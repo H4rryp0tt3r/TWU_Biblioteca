@@ -1,0 +1,6 @@
+out/
+.idea/
+.DS_*
+.DS_*/**/**
+lib/
+reports/
