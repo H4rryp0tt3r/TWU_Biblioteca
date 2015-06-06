@@ -4,17 +4,16 @@ import java.util.ArrayList;
 
 public class Library {
 
-    private ArrayList<String> listOfBooks;
+    private ArrayList<Book> listOfBooks;
 
     public Library(){
-        listOfBooks = new ArrayList<String>();
-        listOfBooks.add(new String("Sample Book1"));
-        listOfBooks.add(new String("Sample Book2"));
-        listOfBooks.add(new String("Sample Book3"));
-        listOfBooks.add(new String("Sample Book4"));
+        listOfBooks = new ArrayList<Book>();
+        listOfBooks.add(new Book("Sample Book1","Nagesh","2009"));
+        listOfBooks.add(new Book("Sample Book2","Naresh","2010"));
+        listOfBooks.add(new Book("Sample Book3","Ganesh","2011"));
     }
 
-    public void displayBookListByName() {
+    public void displayBookListWithAllDetails() {
         for(int i=0;i<listOfBooks.size();i++) {
             System.out.println(listOfBooks.get(i));
         }

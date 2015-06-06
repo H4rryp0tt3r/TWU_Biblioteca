@@ -22,13 +22,13 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldBeAbleToDisplayBooksByName() {
+    public void shouldBeAbleToDisplayBooksByDetails() {
         Library library = new Library();
-        library.displayBookListByName();
+        library.displayBookListWithAllDetails();
 
         String actualResponse = outContent.toString();
 
-        assertThat(actualResponse, is("Sample Book1\nSample Book2\nSample Book3\nSample Book4\n"));
+        assertThat(actualResponse, is("Sample Book1                                       | Nagesh          | 2009 \nSample Book2                                       | Naresh          | 2010 \nSample Book3                                       | Ganesh          | 2011 \n"));
     }
 
     @After
