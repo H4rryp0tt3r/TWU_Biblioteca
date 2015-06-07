@@ -3,7 +3,11 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    private Library library = new Library();
+    private Library library;
+
+    public BibliotecaApp(){
+        library = new Library();
+    }
 
     public void printWelcomeMessage() {
         System.out.println("Welcome to Biblioteca!");
