@@ -14,12 +14,12 @@
 
   <target name="compile">
     <mkdir dir="out/src/classes"/>
-    <javac srcdir="src" destdir="out/src/classes"/>
+    <javac srcdir="src" destdir="out/src/classes" includeantruntime="false"/>
   </target>
 
   <target name="compileTests">
     <mkdir dir="out/test/classes"/>
-    <javac srcdir="test" destdir="out/test/classes" classpathref="classpath" classpath="out/src/classes"/>
+    <javac srcdir="test" destdir="out/test/classes" classpathref="classpath" classpath="out/src/classes" includeantruntime="false"/>
   </target>
 
   <target name="test" depends="compile,compileTests">
