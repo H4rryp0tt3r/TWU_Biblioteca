@@ -18,6 +18,12 @@ public class BibliotecaApp {
         BibliotecaApp bibliotecaApp = new BibliotecaApp(library);
         Menu menu = new Menu(library);
         bibliotecaApp.printWelcomeMessage();
-        System.out.println(menu);
+        while(true){
+            System.out.println(menu);
+            Scanner inp = new Scanner(System.in);
+            int userChoice = inp.nextInt();
+            MenuAction actionToBePerformed = menu.chooseOption(userChoice);
+            actionToBePerformed.execute();
+        }
     }
 }
