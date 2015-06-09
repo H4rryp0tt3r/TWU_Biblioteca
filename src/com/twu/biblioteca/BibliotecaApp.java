@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class BibliotecaApp {
     private Library library;
 
-    public BibliotecaApp(){
-        library = new Library();
+    public BibliotecaApp(Library library){
+        this.library = library;
     }
 
     public void printWelcomeMessage() {
@@ -21,5 +21,12 @@ public class BibliotecaApp {
         int userChoice = sin.nextInt();
         if(userChoice == 1)
             library.displayBookListWithAllDetails();
+    }
+
+    public static void main(String args[]) {
+        Library library = new Library();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(library);
+        bibliotecaApp.printWelcomeMessage();
+        bibliotecaApp.displayMainMenu();
     }
 }

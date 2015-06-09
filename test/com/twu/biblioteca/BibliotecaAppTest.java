@@ -17,6 +17,7 @@ public class BibliotecaAppTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("1".getBytes());
+    private final Library library = new Library();
 
     @Before
     public void setUpStreams() {
@@ -27,7 +28,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldBeAbleToPrintWelcomeMessage() {
-        BibliotecaApp app = new BibliotecaApp();
+        BibliotecaApp app = new BibliotecaApp(library);
         app.printWelcomeMessage();
 
         String actualMessage = outContent.toString();
@@ -37,7 +38,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldBeAbleToDisplayMenuAndUserShouldBeAbleToChooseOne() throws IOException {
-        BibliotecaApp app = new BibliotecaApp();
+        BibliotecaApp app = new BibliotecaApp(library);
         app.displayMainMenu();
         inContent.read("1".getBytes());
 
