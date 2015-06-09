@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 public class Book {
-    private String name,author,yearOfPublictaion;
+    private String name, author, yearOfPublictaion;
 
     public Book(String name, String author, String yearOfPublictaion) {
         this.name = name;
@@ -11,6 +11,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("%-50s | %-15s | %-5s",name,author,yearOfPublictaion);
+        return String.format("%-50s | %-15s | %-5s", name, author, yearOfPublictaion);
     }
 }

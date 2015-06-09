@@ -29,8 +29,8 @@ public class LibraryTest {
         String actualResponse = outContent.toString();
 
         assertThat(actualResponse, is("Sample Book1                                       | Nagesh          | 2009 \n" +
-                                      "Sample Book2                                       | Naresh          | 2010 \n" +
-                                      "Sample Book3                                       | Ganesh          | 2011 \n"));
+                "Sample Book2                                       | Naresh          | 2010 \n" +
+                "Sample Book3                                       | Ganesh          | 2011 \n"));
     }
 
     @After

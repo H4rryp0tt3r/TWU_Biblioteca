@@ -23,7 +23,7 @@ public class BookTest {
 
     @Test
     public void shouldBeAbleToReturnBookDetails() {
-        Book book = new Book("Sample Book","H4rryp0tt3r","2009");
+        Book book = new Book("Sample Book", "H4rryp0tt3r", "2009");
 
         String actualResponse = book.toString();
 
