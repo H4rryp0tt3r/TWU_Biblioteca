@@ -11,9 +11,9 @@ public class Menu {
         this.library = library;
         optionList = new HashMap<>();
         actionList = new HashMap<>();
-        optionList.put(1, "List Books");
+        optionList.put(1, BibliotecaAppConstants.LIST_BOOKS_OPTION);
         actionList.put(1, new ListBooksAction(library));
-        optionList.put(2, "Quit");
+        optionList.put(2, BibliotecaAppConstants.QUIT_OPTION);
         actionList.put(2, new QuitAction());
     }
 

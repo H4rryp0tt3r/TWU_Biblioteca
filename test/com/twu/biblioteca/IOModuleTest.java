@@ -7,16 +7,17 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class BibliotecaAppTest {
+public class IOModuleTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final ByteArrayInputStream inContent = new ByteArrayInputStream("1".getBytes());
-    private final Library library = new Library();
+    private final ByteArrayInputStream inContent = new ByteArrayInputStream("2".getBytes());
 
     @Before
     public void setUpStreams() {
@@ -26,13 +27,13 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintWelcomeMessage() {
-        BibliotecaApp app = new BibliotecaApp(library);
-        app.printWelcomeMessage();
+    public void shouldBeAbleToPrintGivenMessage() {
+        IOModule ioModule = new IOModule(new Scanner(System.in), new PrintWriter(System.out, true));
+        ioModule.print("Hello");
 
         String actualMessage = outContent.toString();
 
-        assertThat(actualMessage, is(BibliotecaAppConstants.WELCOME_MESSAGE+"\n"));
+        assertThat(actualMessage, is("Hello\n"));
     }
 
     @After

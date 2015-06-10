@@ -10,7 +10,7 @@ public class BibliotecaApp {
     }
 
     public void printWelcomeMessage() {
-        System.out.println("Welcome to Biblioteca!");
+        System.out.println(BibliotecaAppConstants.WELCOME_MESSAGE);
     }
 
     public static void main(String args[]) {

@@ -11,6 +11,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("%-50s | %-15s | %-5s", name, author, yearOfPublictaion);
+        return String.format(BibliotecaAppConstants.BOOK_DETAILS_FORMAT_PATTERN, name, author, yearOfPublictaion);
     }
 }
