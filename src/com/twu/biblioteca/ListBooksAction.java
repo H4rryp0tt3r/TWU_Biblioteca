@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
-public class ListBooks implements MenuAction {
+public class ListBooksAction implements MenuAction {
 
     private Library library;
 
-    public ListBooks(Library library) {
+    public ListBooksAction(Library library) {
         this.library = library;
     }
 

@@ -27,7 +27,7 @@ public class MenuTest {
 
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) QuitAction\n"));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class MenuTest {
 
         String actualInvokedClass = menu.chooseOption(1).getClass().getName();
 
-        assertThat(actualInvokedClass, is("com.twu.biblioteca.ListBooks"));
+        assertThat(actualInvokedClass, is("com.twu.biblioteca.ListBooksAction"));
     }
 
     @After

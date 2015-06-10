@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ListBooksTest {
+public class ListBooksActionTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final Library library = new Library();
@@ -23,8 +23,8 @@ public class ListBooksTest {
 
     @Test
     public void shouldBeAbleToPerformListBooksAction() {
-        ListBooks listBooks = new ListBooks(library);
-        listBooks.execute();
+        ListBooksAction listBooksAction = new ListBooksAction(library);
+        listBooksAction.execute();
 
         String actualResponse = outContent.toString();
 

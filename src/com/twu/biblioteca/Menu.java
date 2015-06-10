@@ -12,9 +12,9 @@ public class Menu {
         optionList = new HashMap<>();
         actionList = new HashMap<>();
         optionList.put(1, "List Books");
-        actionList.put(1, new ListBooks(library));
+        actionList.put(1, new ListBooksAction(library));
         optionList.put(2, "Quit");
-        actionList.put(2, new Quit());
+        actionList.put(2, new QuitAction());
     }
 
     @Override
