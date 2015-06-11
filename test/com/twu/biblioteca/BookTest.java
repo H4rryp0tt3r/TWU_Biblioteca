@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -37,6 +38,15 @@ public class BookTest {
         Book secondBook = new Book("Book1", "Suresh", "2020");
 
         assertThat(firstBook, is(secondBook));
+    }
+
+    @Test
+    public void shouldBeAbleToPrintSuccessCheckOutStatus() {
+        Book book = new Book("Sample Book", "H4rryp0tt3r", "2009");
+
+        String actualStatusMessage = book.checkOut();
+
+        assertThat(actualStatusMessage, is(SUCCESSFUL_CHECKOUT_MESSAGE));
     }
 
     @After

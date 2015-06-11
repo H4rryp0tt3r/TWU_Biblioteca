@@ -1,14 +1,17 @@
 package com.twu.biblioteca;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static com.twu.biblioteca.BibliotecaAppConstants.BOOK_DETAILS_FORMAT_PATTERN;
 
 public class Book {
     private String name, author, yearOfPublictaion;
+    private boolean isCheckedOut;
 
     public Book(String name, String author, String yearOfPublictaion) {
         this.name = name;
         this.author = author;
         this.yearOfPublictaion = yearOfPublictaion;
+        this.isCheckedOut = false;
     }
 
     @Override
@@ -35,5 +38,12 @@ public class Book {
         result = 31 * result + author.hashCode();
         result = 31 * result + yearOfPublictaion.hashCode();
         return result;
+    }
+
+    public String checkOut() {
+        if(isCheckedOut)
+            return FAILED_CHECKOUT_MESSAGE;
+        isCheckedOut = true;
+        return SUCCESSFUL_CHECKOUT_MESSAGE;
     }
 }
