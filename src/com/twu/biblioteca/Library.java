@@ -6,11 +6,8 @@ public class Library {
 
     private ArrayList<Book> listOfBooks;
 
-    public Library() {
-        listOfBooks = new ArrayList<Book>();
-        listOfBooks.add(new Book("Sample Book1", "Nagesh", "2009"));
-        listOfBooks.add(new Book("Sample Book2", "Naresh", "2010"));
-        listOfBooks.add(new Book("Sample Book3", "Ganesh", "2011"));
+    public Library(ArrayList<Book> listOfBooks) {
+        this.listOfBooks = listOfBooks;
     }
 
     public void displayBookListWithAllDetails() {

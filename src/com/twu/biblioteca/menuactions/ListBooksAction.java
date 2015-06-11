@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menuactions;
+
+import com.twu.biblioteca.Library;
 
 public class ListBooksAction implements MenuAction {
 

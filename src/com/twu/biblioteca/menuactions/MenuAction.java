@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menuactions;
 
 public interface MenuAction {
     void execute();

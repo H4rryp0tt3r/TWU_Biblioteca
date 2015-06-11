@@ -12,12 +12,15 @@ public class IOModule {
         this.outputRenderer = outputRenderer;
     }
 
-
     public void print(String dataToBeViewed) {
         outputRenderer.println(dataToBeViewed);
     }
 
     public String readInput() {
         return inputReader.nextLine();
+    }
+
+    public boolean hasNextInput() {
+        return inputReader.hasNext();
     }
 }

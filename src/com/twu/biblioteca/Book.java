@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
+
 public class Book {
     private String name, author, yearOfPublictaion;
 
@@ -11,6 +13,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format(BibliotecaAppConstants.BOOK_DETAILS_FORMAT_PATTERN, name, author, yearOfPublictaion);
+        return String.format(BOOK_DETAILS_FORMAT_PATTERN, name, author, yearOfPublictaion);
     }
 }

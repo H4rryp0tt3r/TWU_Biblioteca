@@ -1,7 +1,9 @@
 package com.twu.biblioteca;
 
-import java.io.PrintWriter;
-import java.util.Scanner;
+import com.twu.biblioteca.menuactions.InvalidAction;
+import com.twu.biblioteca.menuactions.MenuAction;
+
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 
 public class BibliotecaApp {
     private Library library;
@@ -15,22 +17,17 @@ public class BibliotecaApp {
     }
 
     public void start() {
-        ioModule.print(BibliotecaAppConstants.WELCOME_MESSAGE);
-        while (true) {
+        ioModule.print(WELCOME_MESSAGE);
+        MenuAction actionToBePerformed = null;
+        while (!isQuitAction(actionToBePerformed)) {
             ioModule.print(menu.toString());
             int userChoice = Integer.parseInt(ioModule.readInput());
-            MenuAction actionToBePerformed = menu.chooseOption(userChoice);
+            actionToBePerformed = menu.chooseOption(userChoice);
             actionToBePerformed.execute();
         }
     }
 
-    public static void main(String args[]) {
-        Scanner inputReader = new Scanner(System.in);
-        PrintWriter outputRenderer = new PrintWriter(System.out, true);
-        Library library = new Library();
-        Menu menu = new Menu(library);
-        IOModule ioModule = new IOModule(inputReader, outputRenderer);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(library, ioModule, menu);
-        bibliotecaApp.start();
+    private boolean isQuitAction(MenuAction actionToBePerformed) {
+        return actionToBePerformed instanceof InvalidAction;
     }
 }

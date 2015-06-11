@@ -8,15 +8,12 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 public class BibliotecaAppTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("1".getBytes());
-    private final Library library = new Library();
+    private Library library;
 
     @Before
     public void setUpStreams() {
@@ -25,6 +22,10 @@ public class BibliotecaAppTest {
         System.setIn(inContent);
     }
 
+    @Test
+    public void shouldBeAbleToExecuteActionsBasedOnUserChoice() {
+
+    }
 
     @After
     public void cleanUpStreams() {
