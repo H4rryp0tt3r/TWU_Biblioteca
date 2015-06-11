@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.*;
-import static com.twu.biblioteca.BibliotecaAppConstants.BOOK_DETAILS_FORMAT_PATTERN;
 
 public class Book {
     private String name, author, yearOfPublictaion;
@@ -40,8 +39,12 @@ public class Book {
         return result;
     }
 
+    public boolean getCheckOutStatus() {
+        return isCheckedOut;
+    }
+
     public String checkOut() {
-        if(isCheckedOut)
+        if (isCheckedOut)
             return FAILED_CHECKOUT_MESSAGE;
         isCheckedOut = true;
         return SUCCESSFUL_CHECKOUT_MESSAGE;

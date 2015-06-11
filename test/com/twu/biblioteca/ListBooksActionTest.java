@@ -37,7 +37,7 @@ public class ListBooksActionTest {
 
         assertThat(actualResponse, is("1 | Sample Book1                                       | Nagesh          | 2009 \n" +
                 "2 | Sample Book2                                       | Naresh          | 2010 \n" +
-                "3 | Sample Book3                                       | Ganesh          | 2011 \n"));
+                "3 | Sample Book3                                       | Ganesh          | 2011 \n\n"));
     }
 
     @After

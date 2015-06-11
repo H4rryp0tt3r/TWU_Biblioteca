@@ -10,5 +10,6 @@ public interface BibliotecaAppConstants {
     public static final int INVALID_OPTION = -1;
     public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the Book";
     public static final String FAILED_CHECKOUT_MESSAGE = "That book is not available.";
-
+    public static final String CHECKOUT_OPTION_DESCRIPTION = "Checkout A Book";
+    public static final String CHECKOUT_PROMPT_MESSAGE = "Enter a Book No to Checkout : ";
 }

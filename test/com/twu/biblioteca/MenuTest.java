@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuactions.InvalidAction;
-import com.twu.biblioteca.menuactions.ListBooksAction;
-import com.twu.biblioteca.menuactions.MenuAction;
-import com.twu.biblioteca.menuactions.QuitAction;
+import com.twu.biblioteca.menuactions.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.CHECKOUT_OPTION_DESCRIPTION;
 import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
 import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
 import static org.hamcrest.CoreMatchers.is;
@@ -30,12 +28,15 @@ public class MenuTest {
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-        optionList.put(-1, "Invalid Option");
+        Book dummyBook = new Book("Dummy", "Dummy", "Dummy");
+        optionList.put(-1, null);
         actionList.put(-1, new InvalidAction());
         optionList.put(1, LIST_BOOKS_OPTION_DESCRPTION);
         actionList.put(1, new ListBooksAction(library));
-        optionList.put(2, QUIT_OPTION_DESCRIPTION);
-        actionList.put(2, new QuitAction());
+        optionList.put(2, CHECKOUT_OPTION_DESCRIPTION);
+        actionList.put(2, new CheckOutAction(dummyBook));
+        optionList.put(3, QUIT_OPTION_DESCRIPTION);
+        actionList.put(3, new QuitAction());
         listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
         listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
         listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
@@ -48,7 +49,7 @@ public class MenuTest {
 
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Quit\n"));
     }
 
     @Test
@@ -64,7 +65,7 @@ public class MenuTest {
     public void shouldBeAbleToReturnInvalidActionWhenUserProvidesAnInvalidOption() {
         Menu menu = new Menu(optionList, actionList);
 
-        String actualInvokedClass = menu.chooseOption(3).getClass().getName();
+        String actualInvokedClass = menu.chooseOption(4).getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.InvalidAction"));
     }

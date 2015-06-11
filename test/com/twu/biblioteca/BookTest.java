@@ -41,12 +41,21 @@ public class BookTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintSuccessCheckOutStatus() {
+    public void shouldBeAbleToPrintSuccessCheckOutMessageWhenABookIsCheckedOut() {
         Book book = new Book("Sample Book", "H4rryp0tt3r", "2009");
 
         String actualStatusMessage = book.checkOut();
 
         assertThat(actualStatusMessage, is(SUCCESSFUL_CHECKOUT_MESSAGE));
+    }
+
+    @Test
+    public void shouldBeAbleToReturnCheckOutStatusOfABook() {
+        Book book = new Book("Testing","Nagesh","2015");
+
+        Boolean actualStatus = book.getCheckOutStatus();
+        
+        assertThat(actualStatus, is(false));
     }
 
     @After

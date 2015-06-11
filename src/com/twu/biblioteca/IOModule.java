@@ -16,6 +16,10 @@ public class IOModule {
         outputRenderer.println(dataToBeViewed);
     }
 
+    public void printInLine(String dataToBeViewed) {
+        outputRenderer.print(dataToBeViewed);
+    }
+
     public String readInput() {
         return inputReader.nextLine();
     }

@@ -14,8 +14,11 @@ public class Library {
 
     public void displayBookListWithAllDetails() {
         for (Integer index : listOfBooks.keySet()) {
-            System.out.println(index + " " + COLUMN_SEPARATOR + " " + listOfBooks.get(index));
+            Book book = listOfBooks.get(index);
+            if(!book.getCheckOutStatus())
+                System.out.println(index + " " + COLUMN_SEPARATOR + " " + book);
         }
+        System.out.println();
     }
 
     public Book getBook(int bookNo) {

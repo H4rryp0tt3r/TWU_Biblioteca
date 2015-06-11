@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuactions.CheckOutAction;
 import com.twu.biblioteca.menuactions.InvalidAction;
 import com.twu.biblioteca.menuactions.MenuAction;
 
@@ -23,8 +24,19 @@ public class BibliotecaApp {
             ioModule.print(menu.toString());
             int userChoice = Integer.parseInt(ioModule.readInput());
             actionToBePerformed = menu.chooseOption(userChoice);
+            if (actionToBePerformed instanceof CheckOutAction) {
+                actionToBePerformed = getCheckOutAction();
+            }
             actionToBePerformed.execute();
         }
+    }
+
+    private MenuAction getCheckOutAction() {
+        ioModule.print("Enter a Book No to Checkout : ");
+        int userChoosenBookSno = Integer.parseInt(ioModule.readInput());
+        Book bookToCheckOut = library.getBook(userChoosenBookSno);
+        MenuAction actionToBePerformed = new CheckOutAction(bookToCheckOut);
+        return actionToBePerformed;
     }
 
     private boolean isQuitAction(MenuAction actionToBePerformed) {
