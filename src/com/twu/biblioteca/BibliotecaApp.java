@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.menuactions.InvalidAction;
 import com.twu.biblioteca.menuactions.MenuAction;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 
 public class BibliotecaApp {
     private Library library;

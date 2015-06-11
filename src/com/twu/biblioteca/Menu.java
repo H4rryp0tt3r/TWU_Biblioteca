@@ -4,7 +4,7 @@ import com.twu.biblioteca.menuactions.MenuAction;
 
 import java.util.HashMap;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_OPTION;
 
 public class Menu {
     private HashMap<Integer, String> optionList;
@@ -19,7 +19,7 @@ public class Menu {
     public String toString() {
         String menuText = "";
         for (Integer option : optionList.keySet())
-            if(option != INVALID_OPTION)
+            if (option != INVALID_OPTION)
                 menuText += option + ") " + optionList.get(option) + "\n";
         return menuText;
     }

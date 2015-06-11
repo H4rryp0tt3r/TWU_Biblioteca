@@ -10,10 +10,10 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -22,7 +22,8 @@ public class MenuTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private HashMap<Integer, String> optionList = new HashMap<>();
     private HashMap<Integer, MenuAction> actionList = new HashMap<>();
-    private final ArrayList<Book> listOfBooks = new ArrayList<>();;
+    private final HashMap<Integer, Book> listOfBooks = new HashMap<>();
+    ;
     private Library library;
 
     @Before
@@ -35,9 +36,9 @@ public class MenuTest {
         actionList.put(1, new ListBooksAction(library));
         optionList.put(2, QUIT_OPTION_DESCRIPTION);
         actionList.put(2, new QuitAction());
-        listOfBooks.add(new Book("Sample Book1", "Nagesh", "2009"));
-        listOfBooks.add(new Book("Sample Book2", "Naresh", "2010"));
-        listOfBooks.add(new Book("Sample Book3", "Ganesh", "2011"));
+        listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
+        listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
+        listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
         this.library = new Library(listOfBooks);
     }
 

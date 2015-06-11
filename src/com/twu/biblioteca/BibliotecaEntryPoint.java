@@ -6,20 +6,20 @@ import com.twu.biblioteca.menuactions.MenuAction;
 import com.twu.biblioteca.menuactions.QuitAction;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
 
 public class BibliotecaEntryPoint {
     public static void main(String args[]) {
         Scanner inputReader = new Scanner(System.in);
         PrintWriter outputRenderer = new PrintWriter(System.out, true);
-        ArrayList<Book> listOfBooks = new ArrayList<>();
-        listOfBooks.add(new Book("Sample Book1", "Nagesh", "2009"));
-        listOfBooks.add(new Book("Sample Book2", "Naresh", "2010"));
-        listOfBooks.add(new Book("Sample Book3", "Ganesh", "2011"));
+        HashMap<Integer, Book> listOfBooks = new HashMap();
+        listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
+        listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
+        listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
         Library library = new Library(listOfBooks);
         HashMap<Integer, String> optionList = new HashMap<>();
         HashMap<Integer, MenuAction> actionList = new HashMap<>();

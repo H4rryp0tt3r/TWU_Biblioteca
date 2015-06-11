@@ -30,6 +30,15 @@ public class BookTest {
         assertThat(actualResponse, is("Sample Book                                        | H4rryp0tt3r     | 2009 "));
     }
 
+    @Test
+    public void shouldFollowSymmetryProperty() {
+        Book firstBook = new Book("Book1", "Suresh", "2020");
+
+        Book secondBook = new Book("Book1", "Suresh", "2020");
+
+        assertThat(firstBook, is(secondBook));
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
