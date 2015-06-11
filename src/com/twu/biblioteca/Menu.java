@@ -26,6 +26,13 @@ public class Menu {
     }
 
     public MenuAction chooseOption(int userChoice) {
-        return actionList.get(userChoice);
+        if(isListedInOptions(userChoice))
+            return actionList.get(userChoice);
+        else
+            return new InvalidAction();
+    }
+
+    private boolean isListedInOptions(int userChoice) {
+        return actionList.containsKey(userChoice);
     }
 }

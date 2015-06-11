@@ -19,6 +19,7 @@ public class IOModuleTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("2".getBytes());
 
+
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -34,6 +35,16 @@ public class IOModuleTest {
         String actualMessage = outContent.toString();
 
         assertThat(actualMessage, is("Hello\n"));
+    }
+
+    @Test
+    public void shouldBeAbleToReadInputFromUser() {
+        Scanner mockScanner  = new Scanner(inContent);
+        IOModule ioModule = new IOModule(mockScanner, new PrintWriter(System.out, true));
+
+        String actualInput = ioModule.readInput();
+
+        assertThat(actualInput, is("2"));
     }
 
     @After
