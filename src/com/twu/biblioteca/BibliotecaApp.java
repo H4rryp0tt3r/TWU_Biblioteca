@@ -4,6 +4,7 @@ import com.twu.biblioteca.menuactions.CheckOutAction;
 import com.twu.biblioteca.menuactions.InvalidAction;
 import com.twu.biblioteca.menuactions.MenuAction;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 
 public class BibliotecaApp {
@@ -32,7 +33,7 @@ public class BibliotecaApp {
     }
 
     private MenuAction getCheckOutAction() {
-        ioModule.print("Enter a Book No to Checkout : ");
+        ioModule.print(CHECKOUT_PROMPT_MESSAGE);
         int userChoosenBookSno = Integer.parseInt(ioModule.readInput());
         Book bookToCheckOut = library.getBook(userChoosenBookSno);
         MenuAction actionToBePerformed = new CheckOutAction(bookToCheckOut);
