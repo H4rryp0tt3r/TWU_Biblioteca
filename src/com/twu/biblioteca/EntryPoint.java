@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.*;
 
-public class BibliotecaEntryPoint {
+public class EntryPoint {
     public static void main(String args[]) {
         Scanner inputReader = new Scanner(System.in);
         PrintWriter outputRenderer = new PrintWriter(System.out, true);
@@ -30,7 +30,7 @@ public class BibliotecaEntryPoint {
         actionList.put(3, new QuitAction());
         Menu menu = new Menu(optionList, actionList);
         IOModule ioModule = new IOModule(inputReader, outputRenderer);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(library, ioModule, menu);
-        bibliotecaApp.start();
+        App app = new App(library, ioModule, menu);
+        app.start();
     }
 }

@@ -1,7 +1,7 @@
 <project default="test">
 
   <property name="lib.dir" value="lib"/>
-  <property name="main-class"  value="com.twu.biblioteca.BibliotecaEntryPoint"/>
+  <property name="main-class"  value="com.twu.biblioteca.EntryPoint"/>
 
 
   <path id="classpath">
@@ -42,7 +42,7 @@
     <mkdir dir="out/jar"/>
     <jar destfile="out/jar/Biblioteca.jar" basedir="out/src/classes">
       <manifest>
-        <attribute name="Main-Class" value="com.twu.biblioteca.BibliotecaEntryPoint"/>
+        <attribute name="Main-Class" value="com.twu.biblioteca.EntryPoint"/>
       </manifest>
     </jar>
   </target>

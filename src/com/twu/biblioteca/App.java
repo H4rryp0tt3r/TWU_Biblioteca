@@ -3,16 +3,17 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.menuactions.CheckOutAction;
 import com.twu.biblioteca.menuactions.InvalidAction;
 import com.twu.biblioteca.menuactions.MenuAction;
+import com.twu.biblioteca.menuactions.QuitAction;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 
-public class BibliotecaApp {
+public class App {
     private Library library;
     private IOModule ioModule;
     private Menu menu;
 
-    public BibliotecaApp(Library library, IOModule ioModule, Menu menu) {
+    public App(Library library, IOModule ioModule, Menu menu) {
         this.library = library;
         this.ioModule = ioModule;
         this.menu = menu;
@@ -41,6 +42,6 @@ public class BibliotecaApp {
     }
 
     private boolean isQuitAction(MenuAction actionToBePerformed) {
-        return actionToBePerformed instanceof InvalidAction;
+        return actionToBePerformed instanceof QuitAction;
     }
 }
