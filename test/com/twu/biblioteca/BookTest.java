@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -41,20 +40,22 @@ public class BookTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintSuccessCheckOutMessageWhenABookIsCheckedOut() {
-        Book book = new Book("Sample Book", "H4rryp0tt3r", "2009");
+    public void shouldFollowTransitiveProperty() {
+        Book firstBook = new Book("Book1", "Nagesh", "2009");
+        Book secondBook = new Book("Book1", "Nagesh", "2009");
+        Book thirdBook = new Book("Book1", "Nagesh", "2009");
 
-        String actualStatusMessage = book.checkOut();
-
-        assertThat(actualStatusMessage, is(SUCCESSFUL_CHECKOUT_MESSAGE));
+        assertThat(firstBook, is(secondBook));
+        assertThat(secondBook, is(thirdBook));
+        assertThat(firstBook, is(thirdBook));
     }
 
     @Test
     public void shouldBeAbleToReturnCheckOutStatusOfABook() {
-        Book book = new Book("Testing","Nagesh","2015");
+        Book book = new Book("Testing", "Nagesh", "2015");
 
         Boolean actualStatus = book.getCheckOutStatus();
-        
+
         assertThat(actualStatus, is(false));
     }
 

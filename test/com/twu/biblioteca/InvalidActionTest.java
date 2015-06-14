@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -25,7 +26,8 @@ public class InvalidActionTest {
         listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
         listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
         listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
-        this.library = new Library(listOfBooks);
+        ArrayList<Integer> checkedOutBooksSerialNumbers = new ArrayList<>();
+        this.library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
     }
 
     @Test

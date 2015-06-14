@@ -12,4 +12,7 @@ public interface BibliotecaAppConstants {
     public static final String FAILED_CHECKOUT_MESSAGE = "That book is not available.";
     public static final String CHECKOUT_OPTION_DESCRIPTION = "Checkout A Book";
     public static final String CHECKOUT_PROMPT_MESSAGE = "Enter a Book No to Checkout : ";
+    public static final String RETURN_PROMPT_MESSAGE = "Enter a Book No to Return : ";
+    public static final String SUCCESSFUL_RETURN_MESSAGE = "Thank you for returning the Book";
+    public static final String FAILED_RETURN_MESSAGE = "That is not a valid Book to return";
 }

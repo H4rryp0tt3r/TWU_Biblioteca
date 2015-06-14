@@ -39,7 +39,7 @@ public class IOModuleTest {
 
     @Test
     public void shouldBeAbleToReadInputFromUser() {
-        Scanner mockScanner  = new Scanner(inContent);
+        Scanner mockScanner = new Scanner(inContent);
         IOModule ioModule = new IOModule(mockScanner, new PrintWriter(System.out, true));
 
         String actualInput = ioModule.readInput();
