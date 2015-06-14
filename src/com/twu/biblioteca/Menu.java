@@ -31,6 +31,11 @@ public class Menu {
             return actionList.get(INVALID_OPTION);
     }
 
+    public void addOption(int menuItemNumber,String menuItemDescription, MenuAction menuAction) {
+        optionList.put(menuItemNumber, menuItemDescription);
+        actionList.put(menuItemNumber, menuAction);
+    }
+
     private boolean isListedInOptions(int userChoice) {
         return actionList.containsKey(userChoice);
     }

@@ -29,8 +29,10 @@ public class EntryPoint {
         actionList.put(1, new ListBooksAction(library));
         optionList.put(2, CHECKOUT_OPTION_DESCRIPTION);
         actionList.put(2, new CheckOutBookAction(library, ioModule));
-        optionList.put(3, QUIT_OPTION_DESCRIPTION);
-        actionList.put(3, new QuitAction());
+        optionList.put(3, RETURN_BOOK_OPTION_DESCRIPTION);
+        actionList.put(3, new ReturnBookAction(library, ioModule));
+        optionList.put(4, QUIT_OPTION_DESCRIPTION);
+        actionList.put(4, new QuitAction());
         App app = new App(library, ioModule, menu);
         app.start();
     }

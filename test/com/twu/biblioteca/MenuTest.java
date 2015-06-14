@@ -39,7 +39,10 @@ public class MenuTest {
         actionList.put(1, new ListBooksAction(library));
         optionList.put(2, CHECKOUT_OPTION_DESCRIPTION);
         actionList.put(2, new CheckOutBookAction(library, mockIOModule));
-        optionList.put(3, QUIT_OPTION_DESCRIPTION);
+        optionList.put(3, RETURN_BOOK_OPTION_DESCRIPTION);
+        actionList.put(3, new ReturnBookAction(library, mockIOModule));
+        optionList.put(4, QUIT_OPTION_DESCRIPTION);
+        actionList.put(4, new QuitAction());
         actionList.put(3, new QuitAction());
         listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
         listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
@@ -53,7 +56,7 @@ public class MenuTest {
 
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Return A Book\n4) Quit\n"));
     }
 
     @Test
@@ -69,9 +72,19 @@ public class MenuTest {
     public void shouldBeAbleToReturnInvalidActionWhenUserProvidesAnInvalidOption() {
         Menu menu = new Menu(optionList, actionList);
 
-        String actualInvokedClass = menu.chooseOption(4).getClass().getName();
+        String actualInvokedClass = menu.chooseOption(5).getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.InvalidAction"));
+    }
+
+    @Test
+    public void shouldBeAbleToAddAnOptionToExistingMenu() {
+        Menu menu = new Menu(optionList, actionList);
+        menu.addOption(6, QUIT_OPTION_DESCRIPTION, new QuitAction());
+
+        String actualInvokedClass = menu.chooseOption(6).getClass().getName();
+
+        assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.QuitAction"));
     }
 
     @After
