@@ -23,16 +23,11 @@ public class EntryPoint {
         Library library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
         Menu menu = new Menu(optionList, actionList);
         IOModule ioModule = new IOModule(inputReader, outputRenderer);
-        optionList.put(-1, null);
-        actionList.put(-1, new InvalidAction());
-        optionList.put(1, LIST_BOOKS_OPTION_DESCRPTION);
-        actionList.put(1, new ListBooksAction(library));
-        optionList.put(2, CHECKOUT_OPTION_DESCRIPTION);
-        actionList.put(2, new CheckOutBookAction(library, ioModule));
-        optionList.put(3, RETURN_BOOK_OPTION_DESCRIPTION);
-        actionList.put(3, new ReturnBookAction(library, ioModule));
-        optionList.put(4, QUIT_OPTION_DESCRIPTION);
-        actionList.put(4, new QuitAction());
+        menu.addOption(-1, null, new InvalidAction());
+        menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, ioModule));
+        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, ioModule));
+        menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
         App app = new App(library, ioModule, menu);
         app.start();
     }

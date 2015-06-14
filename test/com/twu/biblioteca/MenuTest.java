@@ -27,33 +27,27 @@ public class MenuTest {
     private HashMap<Integer, String> optionList = new HashMap<>();
     private HashMap<Integer, MenuAction> actionList = new HashMap<>();
     private Library library;
+    private Menu menu;
 
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
         ArrayList<Integer> checkedOutBooksSerialNumbers = new ArrayList<>();
-        optionList.put(-1, null);
-        actionList.put(-1, new InvalidAction());
-        optionList.put(1, LIST_BOOKS_OPTION_DESCRPTION);
-        actionList.put(1, new ListBooksAction(library));
-        optionList.put(2, CHECKOUT_OPTION_DESCRIPTION);
-        actionList.put(2, new CheckOutBookAction(library, mockIOModule));
-        optionList.put(3, RETURN_BOOK_OPTION_DESCRIPTION);
-        actionList.put(3, new ReturnBookAction(library, mockIOModule));
-        optionList.put(4, QUIT_OPTION_DESCRIPTION);
-        actionList.put(4, new QuitAction());
-        actionList.put(3, new QuitAction());
         listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
         listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
         listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
         this.library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
+        this.menu = new Menu(optionList, actionList);
+        menu.addOption(-1, null, new InvalidAction());
+        menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, mockIOModule));
+        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, mockIOModule));
+        menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
     }
 
     @Test
     public void shouldBeAbleToPrintMenuInRequiredFormat() {
-        Menu menu = new Menu(optionList, actionList);
-
         String actualMenu = menu.toString();
 
         assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Return A Book\n4) Quit\n"));
@@ -61,8 +55,6 @@ public class MenuTest {
 
     @Test
     public void shouldBeAbleToPerformTheCorrectMenuActionOnUserChoice() {
-        Menu menu = new Menu(optionList, actionList);
-
         String actualInvokedClass = menu.chooseOption(1).getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.ListBooksAction"));
@@ -70,8 +62,6 @@ public class MenuTest {
 
     @Test
     public void shouldBeAbleToReturnInvalidActionWhenUserProvidesAnInvalidOption() {
-        Menu menu = new Menu(optionList, actionList);
-
         String actualInvokedClass = menu.chooseOption(5).getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.InvalidAction"));
@@ -79,7 +69,6 @@ public class MenuTest {
 
     @Test
     public void shouldBeAbleToAddAnOptionToExistingMenu() {
-        Menu menu = new Menu(optionList, actionList);
         menu.addOption(6, QUIT_OPTION_DESCRIPTION, new QuitAction());
 
         String actualInvokedClass = menu.chooseOption(6).getClass().getName();
