@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 // This class takes care of IO operations like read from console & print to console

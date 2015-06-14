@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;

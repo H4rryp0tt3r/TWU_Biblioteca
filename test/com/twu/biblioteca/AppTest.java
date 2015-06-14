@@ -7,16 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AppTest {
