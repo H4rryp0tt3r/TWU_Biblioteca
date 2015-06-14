@@ -1,10 +1,11 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.BibliotecaAppConstants;
+import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_SELECTION_MESSAGE;
 
+// This Class executes when User Enters an Invalid Option
 public class InvalidAction implements MenuAction {
     @Override
     public void execute() {
-        System.out.println(BibliotecaAppConstants.INVALID_SELECTION_MESSAGE);
+        System.out.println(INVALID_SELECTION_MESSAGE);
     }
 }

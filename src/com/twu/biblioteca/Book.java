@@ -2,15 +2,14 @@ package com.twu.biblioteca;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.BOOK_DETAILS_FORMAT_PATTERN;
 
+// This Class Store Book data and Has a formatter to Print itself
 public class Book {
     private String name, author, yearOfPublictaion;
-    private boolean isCheckedOut;
 
     public Book(String name, String author, String yearOfPublictaion) {
         this.name = name;
         this.author = author;
         this.yearOfPublictaion = yearOfPublictaion;
-        this.isCheckedOut = false;
     }
 
     @Override
@@ -29,9 +28,5 @@ public class Book {
         if (!author.equals(book.author)) return false;
         return yearOfPublictaion.equals(book.yearOfPublictaion);
 
-    }
-
-    public boolean getCheckOutStatus() {
-        return isCheckedOut;
     }
 }

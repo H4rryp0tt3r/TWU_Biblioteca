@@ -5,6 +5,7 @@ import com.twu.biblioteca.Library;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.CHECKOUT_PROMPT_MESSAGE;
 
+// This Class executes the Checkout Book Action
 public class CheckOutBookAction implements MenuAction {
     private Library library;
     private IOModule ioModule;

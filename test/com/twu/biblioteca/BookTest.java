@@ -50,15 +50,6 @@ public class BookTest {
         assertThat(firstBook, is(thirdBook));
     }
 
-    @Test
-    public void shouldBeAbleToReturnCheckOutStatusOfABook() {
-        Book book = new Book("Testing", "Nagesh", "2015");
-
-        Boolean actualStatus = book.getCheckOutStatus();
-
-        assertThat(actualStatus, is(false));
-    }
-
     @After
     public void cleanUpStreams() {
         System.setOut(null);

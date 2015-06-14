@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_OPTION;
 
+// This class will take care of Menu of our Application and it has methods to chooseOption from Menu & addOption to Menu.
 public class Menu {
     private HashMap<Integer, String> optionList;
     private HashMap<Integer, MenuAction> actionList;
@@ -31,7 +32,7 @@ public class Menu {
             return actionList.get(INVALID_OPTION);
     }
 
-    public void addOption(int menuItemNumber,String menuItemDescription, MenuAction menuAction) {
+    public void addOption(int menuItemNumber, String menuItemDescription, MenuAction menuAction) {
         optionList.put(menuItemNumber, menuItemDescription);
         actionList.put(menuItemNumber, menuAction);
     }

@@ -28,9 +28,19 @@ public class IOModuleTest {
     }
 
     @Test
-    public void shouldBeAbleToPrintGivenMessage() {
-        IOModule ioModule = new IOModule(new Scanner(System.in), new PrintWriter(System.out, true));
+    public void shouldBeAbleToPrintGivenMessageInLine() {
+        IOModule ioModule = new IOModule(new Scanner(System.in), System.out);
         ioModule.print("Hello");
+
+        String actualMessage = outContent.toString();
+
+        assertThat(actualMessage, is("Hello"));
+    }
+
+    @Test
+    public void shouldBeAbleToPrintGivenMessageAndChangeCursorToNewLine() {
+        IOModule ioModule = new IOModule(new Scanner(System.in), System.out);
+        ioModule.println("Hello");
 
         String actualMessage = outContent.toString();
 
@@ -40,7 +50,7 @@ public class IOModuleTest {
     @Test
     public void shouldBeAbleToReadInputFromUser() {
         Scanner mockScanner = new Scanner(inContent);
-        IOModule ioModule = new IOModule(mockScanner, new PrintWriter(System.out, true));
+        IOModule ioModule = new IOModule(mockScanner, System.out);
 
         String actualInput = ioModule.readInput();
 
