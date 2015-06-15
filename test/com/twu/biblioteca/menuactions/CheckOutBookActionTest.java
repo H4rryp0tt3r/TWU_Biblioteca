@@ -1,5 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menuactions;
 
+import com.twu.biblioteca.Book;
+import com.twu.biblioteca.IOModule;
+import com.twu.biblioteca.Library;
 import com.twu.biblioteca.menuactions.CheckOutBookAction;
 import org.junit.After;
 import org.junit.Before;

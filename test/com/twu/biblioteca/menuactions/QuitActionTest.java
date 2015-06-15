@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.menuactions;
 
 import com.twu.biblioteca.menuactions.QuitAction;
 import org.junit.Rule;
