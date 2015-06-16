@@ -68,6 +68,25 @@ public class LibraryTest {
         assertThat(actualStatusMessage, is(BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESSAGE));
     }
 
+    @Test
+    public void shouldBeAbleToPrintFailedStatusMessageUponAFailedCheckOut() {
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+
+        String actualStatusMessage = library.checkOut("Sample Book0");
+
+        assertThat(actualStatusMessage, is(BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE));
+    }
+
+    @Test
+    public void shouldBeAbleToPrintFailedStatusMessageWhenUserTriesToCheckOutABookThatIsAlreadyCheckedOut() {
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        library.checkOut("Sample Book1");
+
+        String actualStatusMessage = library.checkOut("Sample Book1");
+
+        assertThat(actualStatusMessage, is(BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE));
+    }
+
     @After
     public void cleanUp() {
         System.setOut(null);
