@@ -3,7 +3,6 @@ package com.twu.biblioteca.menuactions;
 import com.twu.biblioteca.Book;
 import com.twu.biblioteca.IOModule;
 import com.twu.biblioteca.Library;
-import com.twu.biblioteca.menuactions.ListBooksAction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +10,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 

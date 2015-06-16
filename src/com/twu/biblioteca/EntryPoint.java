@@ -1,13 +1,17 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuactions.*;
+import com.twu.biblioteca.menuactions.InvalidAction;
+import com.twu.biblioteca.menuactions.ListBooksAction;
+import com.twu.biblioteca.menuactions.MenuAction;
+import com.twu.biblioteca.menuactions.QuitAction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
 
 // This class has all the Initialization of App
 public class EntryPoint {

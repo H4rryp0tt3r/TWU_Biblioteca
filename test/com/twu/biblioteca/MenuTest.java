@@ -1,11 +1,13 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuactions.*;
+import com.twu.biblioteca.menuactions.InvalidAction;
+import com.twu.biblioteca.menuactions.ListBooksAction;
+import com.twu.biblioteca.menuactions.MenuAction;
+import com.twu.biblioteca.menuactions.QuitAction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.ByteArrayOutputStream;
@@ -15,7 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

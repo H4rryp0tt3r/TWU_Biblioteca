@@ -27,7 +27,7 @@ public class App {
             int userChoice = Integer.parseInt(ioModule.readInput());
             actionToBePerformed = menu.chooseOption(userChoice);
             actionToBePerformed.execute();
-        } while(!isQuitAction(actionToBePerformed));
+        } while (!isQuitAction(actionToBePerformed));
     }
 
     private boolean isQuitAction(MenuAction actionToBePerformed) {
