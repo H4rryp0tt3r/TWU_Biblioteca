@@ -25,7 +25,8 @@ public class EntryPoint {
         HashMap<Integer, String> optionList = new HashMap<>();
         HashMap<Integer, MenuAction> actionList = new HashMap<>();
         IOModule ioModule = new IOModule(inputReader, System.out);
-        Library library = new Library(availableBooksList, checkedOutBooksList, ioModule);
+        List<Book> searchResultsList = new ArrayList<>();
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
         Menu menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));

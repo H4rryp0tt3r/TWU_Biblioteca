@@ -13,6 +13,6 @@ public class ListBooksAction implements MenuAction {
 
     @Override
     public void execute() {
-        library.displayBookListWithAllDetails();
+        library.displayAvailableBookListWithAllDetails();
     }
 }

@@ -35,11 +35,12 @@ public class MenuTest {
     public void setUp() {
         List<Book> availableBooksList = new ArrayList<>();
         List<Book> checkedOutBooksList = new ArrayList<>();
+        List<Book> searchResultsList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         IOModule ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
-        Library library = new Library(availableBooksList, checkedOutBooksList, ioModule);
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
         menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
