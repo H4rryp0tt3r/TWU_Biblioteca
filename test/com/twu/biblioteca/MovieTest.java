@@ -30,6 +30,17 @@ public class MovieTest {
         assertThat(firstMovie, is(secondMovie));
     }
 
+    @Test
+    public void shouldFollowTransitiveProperty() {
+        Movie firstMovie = new Movie("Interstellar", "Nolan", "2015", "8.9");
+        Movie secondMovie = new Movie("Interstellar", "Nolan", "2015", "8.9");
+        Movie thirdMovie = new Movie("Interstellar", "Nolan", "2015", "8.9");
+
+        assertThat(firstMovie, is(secondMovie));
+        assertThat(secondMovie, is(thirdMovie));
+        assertThat(firstMovie, is(thirdMovie));
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
