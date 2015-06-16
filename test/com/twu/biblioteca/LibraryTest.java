@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE;
 import static com.twu.biblioteca.BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESSAGE;
@@ -18,51 +20,36 @@ public class LibraryTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final HashMap<Integer, Book> listOfBooks = new HashMap<>();
-    private ArrayList<Integer> checkedOutBooksSerialNumbers = new ArrayList<>();
+    private List<Book> availableBooksList;
+    private List<Book> checkedOutBooksList;
+    private IOModule ioModule;
 
     @Before
-    public void setUpStreams() {
+    public void setUp() {
+        availableBooksList = new ArrayList<>();
+        checkedOutBooksList = new ArrayList<>();
+        availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
+        availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
+        availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
+        ioModule = new IOModule(new Scanner(System.in), new PrintStream(outContent));
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
-        listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
-        listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
-        listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
     }
 
     @Test
     public void shouldBeAbleToDisplayBooksByDetails() {
-        Library library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
+        Library library = new Library(availableBooksList, checkedOutBooksList, ioModule);
         library.displayBookListWithAllDetails();
 
         String actualResponse = outContent.toString();
 
-        assertThat(actualResponse, is("1 | Sample Book1                                       | Nagesh          | 2009 \n" +
-                "2 | Sample Book2                                       | Naresh          | 2010 \n" +
-                "3 | Sample Book3                                       | Ganesh          | 2011 \n\n"));
-    }
-
-    @Test
-    public void shouldBeAbleToPrintSuccessCheckOutMessageWhenABookIsCheckedOut() {
-        Library library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
-
-        String actualStatusMessage = library.checkOutABook(1);
-
-        assertThat(actualStatusMessage, is(SUCCESSFUL_CHECKOUT_MESSAGE));
-    }
-
-    @Test
-    public void shouldBeAbleToPrintFailedCheckOutMessageWhenUserTriesToCheckoutAAlreadyCheckedOutBook() {
-        Library library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
-        library.checkOutABook(1);
-
-        String actualStatusMessage = library.checkOutABook(1);
-
-        assertThat(actualStatusMessage, is(FAILED_CHECKOUT_MESSAGE));
+        assertThat(actualResponse, is("Sample Book1                                       | Nagesh          | 2009 \n" +
+                "Sample Book2                                       | Naresh          | 2010 \n" +
+                "Sample Book3                                       | Ganesh          | 2011 \n"));
     }
 
     @After
-    public void cleanUpStreams() {
+    public void cleanUp() {
         System.setOut(null);
         System.setErr(null);
     }

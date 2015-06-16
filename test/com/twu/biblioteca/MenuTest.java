@@ -12,6 +12,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -21,36 +23,36 @@ import static org.junit.Assert.assertThat;
 public class MenuTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private final HashMap<Integer, Book> listOfBooks = new HashMap<>();
-    @Mock
-    IOModule mockIOModule;
     private HashMap<Integer, String> optionList = new HashMap<>();
     private HashMap<Integer, MenuAction> actionList = new HashMap<>();
     private Library library;
     private Menu menu;
+    private List<Book> availableBooksList;
+    private List<Book> checkedOutBooksList;
+    private IOModule ioModule;
 
     @Before
     public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
-        ArrayList<Integer> checkedOutBooksSerialNumbers = new ArrayList<>();
-        listOfBooks.put(1, new Book("Sample Book1", "Nagesh", "2009"));
-        listOfBooks.put(2, new Book("Sample Book2", "Naresh", "2010"));
-        listOfBooks.put(3, new Book("Sample Book3", "Ganesh", "2011"));
-        this.library = new Library(listOfBooks, checkedOutBooksSerialNumbers);
-        this.menu = new Menu(optionList, actionList);
+        availableBooksList = new ArrayList<>();
+        checkedOutBooksList = new ArrayList<>();
+        availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
+        availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
+        availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
+        ioModule = new IOModule(new Scanner(System.in), new PrintStream(outContent));
+        library = new Library(availableBooksList, checkedOutBooksList, ioModule);
+        menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
-        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, mockIOModule));
-        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, mockIOModule));
-        menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        menu.addOption(2, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
     }
 
     @Test
     public void shouldBeAbleToPrintMenuInRequiredFormat() {
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Return A Book\n4) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) Quit\n"));
     }
 
     @Test
