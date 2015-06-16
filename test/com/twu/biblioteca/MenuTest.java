@@ -8,8 +8,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class MenuTest {
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
-        ioModule = new IOModule(new Scanner(System.in), new PrintStream(outContent));
+        ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
         library = new Library(availableBooksList, checkedOutBooksList, ioModule);
         menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
