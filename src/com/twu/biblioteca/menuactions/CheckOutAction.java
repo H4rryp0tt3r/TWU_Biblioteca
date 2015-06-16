@@ -19,6 +19,6 @@ public class CheckOutAction implements MenuAction {
     public void execute() {
         ioModule.print(CHECKOUT_PROMPT_MESSAGE);
         String userGivenBookName = ioModule.readInput();
-        ioModule.println(library.checkOut(userGivenBookName));
+        ioModule.println(library.checkOutBook(userGivenBookName));
     }
 }

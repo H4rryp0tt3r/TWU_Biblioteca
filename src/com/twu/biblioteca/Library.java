@@ -2,8 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.List;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE;
-import static com.twu.biblioteca.BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESSAGE;
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 
 // This class will holds list of books & a checkout Record. And has methods to Checkout & Return a Book.
 public class Library {
@@ -35,7 +34,7 @@ public class Library {
         return searchResultsList;
     }
 
-    public String checkOut(String bookName) {
+    public String checkOutBook(String bookName) {
         searchResultsList.clear();
         searchBooksByName(bookName, availableBooksList);
         for (Book book : searchResultsList) {
@@ -46,5 +45,18 @@ public class Library {
             return SUCCESSFUL_CHECKOUT_MESSAGE;
         }
         return FAILED_CHECKOUT_MESSAGE;
+    }
+
+    public String returnBook(String bookName) {
+        searchResultsList.clear();
+        searchBooksByName(bookName, checkedOutBooksList);
+        for (Book book : searchResultsList) {
+            synchronized (this) {
+                checkedOutBooksList.remove(book);
+                availableBooksList.add(book);
+            }
+            return SUCCESSFUL_RETURN_MESSAGE;
+        }
+        return FAILED_RETURN_MESSAGE;
     }
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -63,28 +64,38 @@ public class LibraryTest {
     public void shouldBeAbleToPrintSuccessMessageUponASuccessfulCheckOut() {
         Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
 
-        String actualStatusMessage = library.checkOut("Sample Book1");
+        String actualStatusMessage = library.checkOutBook("Sample Book1");
 
-        assertThat(actualStatusMessage, is(BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESSAGE));
+        assertThat(actualStatusMessage, is(SUCCESSFUL_CHECKOUT_MESSAGE));
     }
 
     @Test
     public void shouldBeAbleToPrintFailedStatusMessageUponAFailedCheckOut() {
         Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
 
-        String actualStatusMessage = library.checkOut("Sample Book0");
+        String actualStatusMessage = library.checkOutBook("Sample Book0");
 
-        assertThat(actualStatusMessage, is(BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE));
+        assertThat(actualStatusMessage, is(FAILED_CHECKOUT_MESSAGE));
     }
 
     @Test
     public void shouldBeAbleToPrintFailedStatusMessageWhenUserTriesToCheckOutABookThatIsAlreadyCheckedOut() {
         Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
-        library.checkOut("Sample Book1");
+        library.checkOutBook("Sample Book1");
 
-        String actualStatusMessage = library.checkOut("Sample Book1");
+        String actualStatusMessage = library.checkOutBook("Sample Book1");
 
-        assertThat(actualStatusMessage, is(BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE));
+        assertThat(actualStatusMessage, is(FAILED_CHECKOUT_MESSAGE));
+    }
+
+    @Test
+    public void shouldBeAbleToPrintSuccessMessageUponASuccessfulReturn() {
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        library.checkOutBook("Sample Book1");
+
+        String actualStatusMessage = library.returnBook("Sample Book1");
+
+        assertThat(actualStatusMessage, is(SUCCESSFUL_RETURN_MESSAGE));
     }
 
     @After
