@@ -1,17 +1,13 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuactions.InvalidAction;
-import com.twu.biblioteca.menuactions.ListBooksAction;
-import com.twu.biblioteca.menuactions.MenuAction;
-import com.twu.biblioteca.menuactions.QuitAction;
+import com.twu.biblioteca.menuactions.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
-import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 
 // This class has all the Initialization of App
 public class EntryPoint {
@@ -30,7 +26,8 @@ public class EntryPoint {
         Menu menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
-        menu.addOption(2, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutAction(library, ioModule));
+        menu.addOption(3, QUIT_OPTION_DESCRIPTION, new QuitAction());
         App app = new App(library, ioModule, menu);
         app.start();
     }

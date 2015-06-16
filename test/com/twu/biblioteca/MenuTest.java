@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuactions.InvalidAction;
-import com.twu.biblioteca.menuactions.ListBooksAction;
-import com.twu.biblioteca.menuactions.MenuAction;
-import com.twu.biblioteca.menuactions.QuitAction;
+import com.twu.biblioteca.menuactions.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.LIST_BOOKS_OPTION_DESCRPTION;
-import static com.twu.biblioteca.BibliotecaAppConstants.QUIT_OPTION_DESCRIPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -44,7 +40,8 @@ public class MenuTest {
         menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
-        menu.addOption(2, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutAction(library, ioModule));
+        menu.addOption(3, QUIT_OPTION_DESCRIPTION, new QuitAction());
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
@@ -53,7 +50,7 @@ public class MenuTest {
     public void shouldBeAbleToPrintMenuInRequiredFormat() {
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Quit\n"));
     }
 
     @Test
@@ -65,7 +62,7 @@ public class MenuTest {
 
     @Test
     public void shouldBeAbleToReturnInvalidActionWhenUserProvidesAnInvalidOption() {
-        String actualInvokedClass = menu.chooseOption(5).getClass().getName();
+        String actualInvokedClass = menu.chooseOption(7).getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.InvalidAction"));
     }

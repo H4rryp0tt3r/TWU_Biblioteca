@@ -2,7 +2,8 @@ package com.twu.biblioteca;
 
 import java.util.List;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.FAILED_CHECKOUT_MESSAGE;
+import static com.twu.biblioteca.BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESSAGE;
 
 // This class will holds list of books & a checkout Record. And has methods to Checkout & Return a Book.
 public class Library {
