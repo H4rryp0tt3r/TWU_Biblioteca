@@ -17,7 +17,7 @@ import static com.twu.biblioteca.BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESS
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class CheckOutActionTest {
+public class CheckOutBookActionTest {
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("Sample Book1\n".getBytes());
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -41,8 +41,8 @@ public class CheckOutActionTest {
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() throws IOException {
-        CheckOutAction checkOutAction = new CheckOutAction(library, ioModule);
-        checkOutAction.execute();
+        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(library, ioModule);
+        checkOutBookAction.execute();
 
         String actualStatusMessage = outContent.toString();
 

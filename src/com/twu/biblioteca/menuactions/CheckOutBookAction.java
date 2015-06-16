@@ -5,12 +5,12 @@ import com.twu.biblioteca.Library;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.CHECKOUT_PROMPT_MESSAGE;
 
-public class CheckOutAction implements MenuAction {
+public class CheckOutBookAction implements MenuAction {
 
     private Library library;
     private IOModule ioModule;
 
-    public CheckOutAction(Library library, IOModule ioModule) {
+    public CheckOutBookAction(Library library, IOModule ioModule) {
         this.library = library;
         this.ioModule = ioModule;
     }

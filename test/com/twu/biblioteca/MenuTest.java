@@ -40,7 +40,7 @@ public class MenuTest {
         menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
-        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutAction(library, ioModule));
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, ioModule));
         menu.addOption(3, QUIT_OPTION_DESCRIPTION, new QuitAction());
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
