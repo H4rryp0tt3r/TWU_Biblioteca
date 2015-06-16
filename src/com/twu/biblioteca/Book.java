@@ -29,4 +29,8 @@ public class Book {
         return yearOfPublictaion.equals(book.yearOfPublictaion);
 
     }
+
+    public boolean match(String givenBookName) {
+        return name.equals(givenBookName);
+    }
 }

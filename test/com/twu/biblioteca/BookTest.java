@@ -50,6 +50,15 @@ public class BookTest {
         assertThat(firstBook, is(thirdBook));
     }
 
+    @Test
+    public void shouldBeAbleToCheckWhetherBookNameIsGivenBookNameOrNot() {
+        Book book = new Book("Sample Book", "Nagesh", "2015");
+
+        boolean actualResult = book.match("Sample Book");
+
+        assertThat(actualResult, is(true));
+    }
+
     @After
     public void cleanUp() {
         System.setOut(null);
