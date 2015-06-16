@@ -27,7 +27,8 @@ public class EntryPoint {
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
         menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, ioModule));
-        menu.addOption(3, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, ioModule));
+        menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
         App app = new App(library, ioModule, menu);
         app.start();
     }

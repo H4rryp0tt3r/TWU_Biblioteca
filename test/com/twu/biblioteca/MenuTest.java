@@ -41,7 +41,8 @@ public class MenuTest {
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
         menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, ioModule));
-        menu.addOption(3, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, ioModule));
+        menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
@@ -50,7 +51,7 @@ public class MenuTest {
     public void shouldBeAbleToPrintMenuInRequiredFormat() {
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Return A Book\n4) Quit\n"));
     }
 
     @Test
