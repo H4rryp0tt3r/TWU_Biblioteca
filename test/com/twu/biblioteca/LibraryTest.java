@@ -98,6 +98,26 @@ public class LibraryTest {
         assertThat(actualStatusMessage, is(SUCCESSFUL_RETURN_MESSAGE));
     }
 
+    @Test
+    public void shouldBeAbleToFailedStatusMessageUponAFailedReturn() {
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+
+        String actualStatusMessage = library.returnBook("Sample Book0");
+
+        assertThat(actualStatusMessage, is(FAILED_RETURN_MESSAGE));
+    }
+
+    @Test
+    public void shouldBeAbleToPrintFailedStatusMessageWhenUserTriesToReturnABookThatIsAlreadyReturned() {
+        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        library.checkOutBook("Sample Book1");
+        library.returnBook("Sample Book1");
+
+        String actualStatusMessage = library.returnBook("Sample Book1");
+
+        assertThat(actualStatusMessage, is(FAILED_RETURN_MESSAGE));
+    }
+
     @After
     public void cleanUp() {
         System.setOut(null);
