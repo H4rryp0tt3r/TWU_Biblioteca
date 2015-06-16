@@ -41,6 +41,15 @@ public class MovieTest {
         assertThat(firstMovie, is(thirdMovie));
     }
 
+    @Test
+    public void shouldBeAbleToReturnMovieDetails() {
+        Movie movie = new Movie("Interstellar", "Nolan", "2015", "8.9");
+
+        String actualResponse = movie.toString();
+
+        assertThat(actualResponse, is("Interstellar                             | Nolan                     | 2015 | 8.9  "));
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);

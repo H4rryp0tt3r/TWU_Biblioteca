@@ -17,4 +17,5 @@ public interface BibliotecaAppConstants {
     public static final String SUCCESSFUL_RETURN_MESSAGE = "Thank you for returning the Book";
     public static final String FAILED_RETURN_MESSAGE = "That is not a valid Book to return";
     public static final String MENU_PROMPT = "Enter your Option : ";
+    public static final String MOVIE_DETAILS_FORMAT_PATTERN = "%-40s " + COLUMN_SEPARATOR + " %-25s " + COLUMN_SEPARATOR + " %-5s" + COLUMN_SEPARATOR + " %-5s";
 }

@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.MOVIE_DETAILS_FORMAT_PATTERN;
+
 // This Class Store Movie data and Has a formatter to Print itself
 public class Movie {
     private String name, director, year;
@@ -24,5 +26,10 @@ public class Movie {
         if (!year.equals(movie.year)) return false;
         return rating.equals(movie.rating);
 
+    }
+
+    @Override
+    public String toString() {
+        return String.format(MOVIE_DETAILS_FORMAT_PATTERN, name, director, year, rating);
     }
 }
