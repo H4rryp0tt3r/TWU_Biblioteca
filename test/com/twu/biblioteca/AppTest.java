@@ -41,7 +41,7 @@ public class AppTest {
     private App bibliotecaApp;
 
     @Before
-    public void setUpStreams() {
+    public void setUp() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
         System.setIn(inContent);
@@ -67,7 +67,7 @@ public class AppTest {
     }
 
     @After
-    public void cleanUpStreams() {
+    public void cleanUp() {
         System.setOut(null);
         System.setErr(null);
         System.setIn(System.in);

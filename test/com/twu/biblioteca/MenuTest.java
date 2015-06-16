@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.BufferedInputStream;
@@ -30,21 +29,17 @@ public class MenuTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private HashMap<Integer, String> optionList = new HashMap<>();
     private HashMap<Integer, MenuAction> actionList = new HashMap<>();
-    private Library library;
     private Menu menu;
-    private List<Book> availableBooksList;
-    private List<Book> checkedOutBooksList;
-    private IOModule ioModule;
 
     @Before
-    public void setUpStreams() {
-        availableBooksList = new ArrayList<>();
-        checkedOutBooksList = new ArrayList<>();
+    public void setUp() {
+        List<Book> availableBooksList = new ArrayList<>();
+        List<Book> checkedOutBooksList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
-        ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
-        library = new Library(availableBooksList, checkedOutBooksList, ioModule);
+        IOModule ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
+        Library library = new Library(availableBooksList, checkedOutBooksList, ioModule);
         menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
@@ -84,7 +79,7 @@ public class MenuTest {
     }
 
     @After
-    public void cleanUpStreams() {
+    public void cleanUp() {
         System.setOut(null);
         System.setErr(null);
     }

@@ -16,7 +16,7 @@ public class BookTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     @Before
-    public void setUpStreams() {
+    public void setUp() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
@@ -51,7 +51,7 @@ public class BookTest {
     }
 
     @After
-    public void cleanUpStreams() {
+    public void cleanUp() {
         System.setOut(null);
         System.setErr(null);
     }
