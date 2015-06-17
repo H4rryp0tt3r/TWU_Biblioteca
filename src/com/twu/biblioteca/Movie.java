@@ -32,4 +32,8 @@ public class Movie {
     public String toString() {
         return String.format(MOVIE_DETAILS_FORMAT_PATTERN, name, director, year, rating);
     }
+
+    public boolean match(String movieName) {
+        return name.equals(movieName);
+    }
 }

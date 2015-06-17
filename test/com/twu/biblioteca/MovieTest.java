@@ -50,6 +50,15 @@ public class MovieTest {
         assertThat(actualResponse, is("Interstellar                             | Nolan                     | 2015 | 8.9  "));
     }
 
+    @Test
+    public void shouldBeAbleToCheckWhetherMovieNameIsGivenMovieNameOrNot() {
+        Movie movie = new Movie("Interstellar", "Nolan", "2015", "8.9");
+
+        boolean actualResult = movie.match("Interstellar");
+
+        assertThat(actualResult, is(true));
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
