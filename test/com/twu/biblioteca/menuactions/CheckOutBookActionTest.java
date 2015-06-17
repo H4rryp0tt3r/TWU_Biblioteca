@@ -40,12 +40,12 @@ public class CheckOutBookActionTest {
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() throws IOException {
-        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(bookSection, controller, SUCCESSFUL_CHECKOUT_MESSAGE, FAILED_CHECKOUT_MESSAGE);
+        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE);
         checkOutBookAction.execute();
 
         String actualStatusMessage = outContent.toString();
 
-        assertThat(actualStatusMessage, is(NAME_PROMPT_MESSAGE + SUCCESSFUL_CHECKOUT_MESSAGE + "\n"));
+        assertThat(actualStatusMessage, is(NAME_PROMPT_MESSAGE + SUCCESSFUL_BOOK_CHECKOUT_MESSAGE + "\n"));
     }
 
     @After
