@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import static com.twu.biblioteca.BibliotecaAppConstants.MOVIE_DETAILS_FORMAT_PATTERN;
 
 // This Class Store Movie data and Has a formatter to Print itself
-public class Movie {
+public class Movie implements LibraryItem {
     private String name, director, year;
     private String rating;
 
