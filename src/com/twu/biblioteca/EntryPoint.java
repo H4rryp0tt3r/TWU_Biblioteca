@@ -13,23 +13,35 @@ import static com.twu.biblioteca.BibliotecaAppConstants.*;
 public class EntryPoint {
     public static void main(String args[]) {
         Scanner inputReader = new Scanner(System.in);
-        List<Book> availableBooksList = new ArrayList<>();
+        IOModule ioModule = new IOModule(inputReader, System.out);
+
+        Controller controller = new Controller(ioModule);
+
+        List<LibraryItem> availableBooksList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
-        List<Book> checkedOutBooksList = new ArrayList<>();
+        List<LibraryItem> checkedOutBooksList = new ArrayList<>();
+        List<LibraryItem> searchResultsList = new ArrayList<>();
+        Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+
+        List<LibraryItem> availableMoviesList = new ArrayList<>();
+        availableMoviesList.add(new Movie("H4rryp0tt3r", "Nagesh", "2030", "7.9"));
+        availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
+        availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
+        List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
+        Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList, ioModule);
+
         HashMap<Integer, String> optionList = new HashMap<>();
         HashMap<Integer, MenuAction> actionList = new HashMap<>();
-        IOModule ioModule = new IOModule(inputReader, System.out);
-        List<Book> searchResultsList = new ArrayList<>();
-        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
         Menu menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
-        menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
-        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, ioModule));
-        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, ioModule));
+        menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(bookSection, controller));
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(bookSection, controller, SUCCESSFUL_CHECKOUT_MESSAGE, FAILED_CHECKOUT_MESSAGE));
+        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(bookSection, controller, SUCCESSFUL_RETURN_MESSAGE, FAILED_RETURN_MESSAGE));
         menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
-        App app = new App(library, ioModule, menu);
+
+        App app = new App(menu, ioModule);
         app.start();
     }
 }

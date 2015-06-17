@@ -27,9 +27,6 @@ public class AppTest {
     Menu mockMenu;
 
     @Mock
-    Library mockLibrary;
-
-    @Mock
     IOModule mockIOModule;
 
     @Mock
@@ -45,7 +42,7 @@ public class AppTest {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
         System.setIn(inContent);
-        bibliotecaApp = new App(mockLibrary, mockIOModule, mockMenu);
+        bibliotecaApp = new App(mockMenu, mockIOModule);
     }
 
     @Test

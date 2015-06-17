@@ -26,22 +26,25 @@ public class MenuTest {
     private HashMap<Integer, String> optionList = new HashMap<>();
     private HashMap<Integer, MenuAction> actionList = new HashMap<>();
     private Menu menu;
+    private IOModule ioModule;
+    private Controller controller;
 
     @Before
     public void setUp() {
-        List<Book> availableBooksList = new ArrayList<>();
-        List<Book> checkedOutBooksList = new ArrayList<>();
-        List<Book> searchResultsList = new ArrayList<>();
+        List<LibraryItem> availableBooksList = new ArrayList<>();
+        List<LibraryItem> checkedOutBooksList = new ArrayList<>();
+        List<LibraryItem> searchResultsList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
-        IOModule ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
-        Library library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
+        Section booksSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        controller = new Controller(ioModule);
         menu = new Menu(optionList, actionList);
         menu.addOption(-1, null, new InvalidAction());
-        menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(library));
-        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(library, ioModule));
-        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(library, ioModule));
+        menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(booksSection, controller));
+        menu.addOption(2, CHECKOUT_OPTION_DESCRIPTION, new CheckOutBookAction(booksSection, controller, SUCCESSFUL_CHECKOUT_MESSAGE, FAILED_CHECKOUT_MESSAGE));
+        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(booksSection, controller, SUCCESSFUL_RETURN_MESSAGE, FAILED_RETURN_MESSAGE));
         menu.addOption(4, QUIT_OPTION_DESCRIPTION, new QuitAction());
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));

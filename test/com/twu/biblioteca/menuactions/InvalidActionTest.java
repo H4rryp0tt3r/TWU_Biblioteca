@@ -1,6 +1,5 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.BibliotecaAppConstants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_SELECTION_MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -29,7 +29,7 @@ public class InvalidActionTest {
 
         String actualResponse = outContent.toString();
 
-        assertThat(actualResponse, is(BibliotecaAppConstants.INVALID_SELECTION_MESSAGE + "\n"));
+        assertThat(actualResponse, is(INVALID_SELECTION_MESSAGE + "\n"));
     }
 
     @After

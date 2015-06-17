@@ -1,24 +1,24 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.IOModule;
-import com.twu.biblioteca.Library;
-
-import static com.twu.biblioteca.BibliotecaAppConstants.CHECKOUT_PROMPT_MESSAGE;
+import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Section;
 
 public class CheckOutBookAction implements MenuAction {
 
-    private Library library;
-    private IOModule ioModule;
+    private Section bookSection;
+    private Controller controller;
+    private String successStatusMessage;
+    private String failedStatusMessage;
 
-    public CheckOutBookAction(Library library, IOModule ioModule) {
-        this.library = library;
-        this.ioModule = ioModule;
+    public CheckOutBookAction(Section bookSection, Controller controller, String successStatusMessage, String failedStatusMessage) {
+        this.bookSection = bookSection;
+        this.controller = controller;
+        this.successStatusMessage = successStatusMessage;
+        this.failedStatusMessage = failedStatusMessage;
     }
 
     @Override
     public void execute() {
-        ioModule.print(CHECKOUT_PROMPT_MESSAGE);
-        String userGivenBookName = ioModule.readInput();
-        ioModule.println(library.checkOutBook(userGivenBookName));
+        controller.checkOutAnItem(bookSection, successStatusMessage, failedStatusMessage);
     }
 }

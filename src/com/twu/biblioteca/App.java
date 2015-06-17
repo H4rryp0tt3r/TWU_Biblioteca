@@ -8,14 +8,12 @@ import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 
 // This Class Uses IOModule to Take User Input And then It gets an appropriate action from Menu and then executes it
 public class App {
-    private Library library;
-    private IOModule ioModule;
     private Menu menu;
+    private IOModule ioModule;
 
-    public App(Library library, IOModule ioModule, Menu menu) {
-        this.library = library;
-        this.ioModule = ioModule;
+    public App(Menu menu, IOModule ioModule) {
         this.menu = menu;
+        this.ioModule = ioModule;
     }
 
     public void start() {

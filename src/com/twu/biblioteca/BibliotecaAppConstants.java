@@ -11,11 +11,10 @@ public interface BibliotecaAppConstants {
     public static final String SUCCESSFUL_CHECKOUT_MESSAGE = "Thank you! Enjoy the Book";
     public static final String FAILED_CHECKOUT_MESSAGE = "That book is not available.";
     public static final String CHECKOUT_OPTION_DESCRIPTION = "Checkout A Book";
-    public static final String CHECKOUT_PROMPT_MESSAGE = "Enter a Book No to Checkout : ";
     public static final String RETURN_BOOK_OPTION_DESCRIPTION = "Return A Book";
-    public static final String RETURN_PROMPT_MESSAGE = "Enter a Book No to Return : ";
     public static final String SUCCESSFUL_RETURN_MESSAGE = "Thank you for returning the Book";
     public static final String FAILED_RETURN_MESSAGE = "That is not a valid Book to return";
     public static final String MENU_PROMPT = "Enter your Option : ";
     public static final String MOVIE_DETAILS_FORMAT_PATTERN = "%-40s " + COLUMN_SEPARATOR + " %-25s " + COLUMN_SEPARATOR + " %-5s" + COLUMN_SEPARATOR + " %-5s";
+    public static final String NAME_PROMPT_MESSAGE = "Enter Name : ";
 }

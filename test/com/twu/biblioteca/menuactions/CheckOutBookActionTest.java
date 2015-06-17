@@ -1,8 +1,6 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.Book;
-import com.twu.biblioteca.IOModule;
-import com.twu.biblioteca.Library;
+import com.twu.biblioteca.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.CHECKOUT_PROMPT_MESSAGE;
-import static com.twu.biblioteca.BibliotecaAppConstants.SUCCESSFUL_CHECKOUT_MESSAGE;
+import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -21,19 +18,21 @@ public class CheckOutBookActionTest {
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("Sample Book1\n".getBytes());
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private Library library;
+    private Section bookSection;
     private IOModule ioModule;
+    private Controller controller;
 
     @Before
     public void setUp() {
-        List<Book> availableBooksList = new ArrayList<>();
-        List<Book> checkedOutBooksList = new ArrayList<>();
-        List<Book> searchResultsList = new ArrayList<>();
+        List<LibraryItem> availableBooksList = new ArrayList<>();
+        List<LibraryItem> checkedOutBooksList = new ArrayList<>();
+        List<LibraryItem> searchResultsList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         ioModule = new IOModule(new Scanner(new BufferedInputStream(inContent)), new PrintStream(outContent));
-        library = new Library(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        controller = new Controller(ioModule);
         System.setIn(inContent);
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
@@ -41,12 +40,12 @@ public class CheckOutBookActionTest {
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() throws IOException {
-        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(library, ioModule);
+        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(bookSection, controller, SUCCESSFUL_CHECKOUT_MESSAGE, FAILED_CHECKOUT_MESSAGE);
         checkOutBookAction.execute();
 
         String actualStatusMessage = outContent.toString();
 
-        assertThat(actualStatusMessage, is(CHECKOUT_PROMPT_MESSAGE + SUCCESSFUL_CHECKOUT_MESSAGE + "\n"));
+        assertThat(actualStatusMessage, is(NAME_PROMPT_MESSAGE + SUCCESSFUL_CHECKOUT_MESSAGE + "\n"));
     }
 
     @After
