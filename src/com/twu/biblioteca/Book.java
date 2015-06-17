@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import static com.twu.biblioteca.BibliotecaAppConstants.BOOK_DETAILS_FORMAT_PATTERN;
 
 // This Class Store Book data and Has a formatter to Print itself
-public class Book {
+public class Book implements LibraryItem {
     private String name, author, yearOfPublictaion;
 
     public Book(String name, String author, String yearOfPublictaion) {
