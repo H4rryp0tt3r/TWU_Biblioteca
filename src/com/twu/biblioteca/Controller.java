@@ -10,7 +10,7 @@ public class Controller {
     }
 
     public void listAvailableItems(Section sectionOfItems) {
-        sectionOfItems.displayAvailableItemsWithAllDetails();
+        ioModule.println(sectionOfItems.displayAvailableItemsWithAllDetails());
     }
 
     public void checkOutAnItem(Section sectionOfItems, String successStatusMessage, String failedStatusMessage) {

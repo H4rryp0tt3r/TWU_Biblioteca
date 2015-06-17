@@ -17,10 +17,12 @@ public class Section {
         this.ioModule = ioModule;
     }
 
-    public void displayAvailableItemsWithAllDetails() {
+    public String displayAvailableItemsWithAllDetails() {
+        String resultItemsInStringFormat = "";
         for (LibraryItem libraryItem : availableItemsList) {
-            ioModule.println(libraryItem.toString());
+            resultItemsInStringFormat += libraryItem.toString() + "\n";
         }
+        return resultItemsInStringFormat;
     }
 
     public List<LibraryItem> searchItemsByName(String itemName, List<LibraryItem> itemsList) {
