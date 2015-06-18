@@ -34,7 +34,7 @@ public class ReturnBookActionTest {
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         ioModule = new IOModule(new Scanner(new BufferedInputStream(inContent)), new PrintStream(outContent));
-        bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
         controller = new Controller(ioModule);
         System.setIn(inContent);
         System.setOut(new PrintStream(outContent));

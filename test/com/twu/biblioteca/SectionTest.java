@@ -35,7 +35,7 @@ public class SectionTest {
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
         controller = new Controller(ioModule);
-        bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }

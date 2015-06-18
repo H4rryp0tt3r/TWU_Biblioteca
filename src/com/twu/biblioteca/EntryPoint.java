@@ -23,14 +23,14 @@ public class EntryPoint {
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         List<LibraryItem> checkedOutBooksList = new ArrayList<>();
         List<LibraryItem> searchResultsList = new ArrayList<>();
-        Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
 
         List<LibraryItem> availableMoviesList = new ArrayList<>();
         availableMoviesList.add(new Movie("H4rryp0tt3r", "Nagesh", "2030", "7.9"));
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
         List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
-        Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList, ioModule);
+        Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         HashMap<Integer, String> optionList = new HashMap<>();
         HashMap<Integer, MenuAction> actionList = new HashMap<>();

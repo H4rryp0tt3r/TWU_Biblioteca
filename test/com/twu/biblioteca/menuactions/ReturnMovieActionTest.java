@@ -34,7 +34,7 @@ public class ReturnMovieActionTest {
         availableMoviesList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableMoviesList.add(new Book("Sample Book3", "Ganesh", "2011"));
         ioModule = new IOModule(new Scanner(new BufferedInputStream(inContent)), new PrintStream(outContent));
-        movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList, ioModule);
+        movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
         controller = new Controller(ioModule);
         System.setIn(inContent);
         System.setOut(new PrintStream(outContent));

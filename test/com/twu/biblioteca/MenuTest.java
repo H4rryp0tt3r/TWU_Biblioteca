@@ -39,14 +39,14 @@ public class MenuTest {
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
-        Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList, ioModule);
+        Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
 
         List<LibraryItem> availableMoviesList = new ArrayList<>();
         availableMoviesList.add(new Movie("H4rryp0tt3r", "Nagesh", "2030", "7.9"));
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
         List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
-        Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList, ioModule);
+        Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         controller = new Controller(ioModule);
         menu = new Menu(optionList, actionList);

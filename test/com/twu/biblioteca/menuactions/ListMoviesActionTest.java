@@ -30,7 +30,7 @@ public class ListMoviesActionTest {
         availableMoviesList.add(new Movie("Harry Potter", "Nagesh", "2023", "7.9"));
         availableMoviesList.add(new Movie("Minions", "Gru", "2015", "Unrated"));
         IOModule ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
-        movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList, ioModule);
+        movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
         controller = new Controller(ioModule);
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));

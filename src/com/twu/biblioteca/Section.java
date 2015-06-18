@@ -8,13 +8,11 @@ public class Section {
     private List<LibraryItem> availableItemsList;
     private List<LibraryItem> checkedOutItemsList;
     private List<LibraryItem> searchResultsList;
-    private IOModule ioModule;
 
-    public Section(List<LibraryItem> availableItemsList, List<LibraryItem> checkedOutItemsList, List<LibraryItem> searchResultsList, IOModule ioModule) {
+    public Section(List<LibraryItem> availableItemsList, List<LibraryItem> checkedOutItemsList, List<LibraryItem> searchResultsList) {
         this.availableItemsList = availableItemsList;
         this.checkedOutItemsList = checkedOutItemsList;
         this.searchResultsList = searchResultsList;
-        this.ioModule = ioModule;
     }
 
     public String displayAvailableItemsWithAllDetails() {
