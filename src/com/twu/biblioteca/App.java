@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.menuactions.MenuAction;
 import com.twu.biblioteca.menuactions.QuitAction;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.MENU_PROMPT;
 import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 
 // This Class Uses IOModule to Take User Input And then It gets an appropriate action from Menu and then executes it
@@ -20,10 +19,7 @@ public class App {
         ioModule.println(WELCOME_MESSAGE);
         MenuAction actionToBePerformed;
         do {
-            ioModule.println(menu.toString());
-            ioModule.print(MENU_PROMPT);
-            int userChoice = Integer.parseInt(ioModule.readInput());
-            actionToBePerformed = menu.chooseOption(userChoice);
+            actionToBePerformed = menu.chooseOption();
             actionToBePerformed.execute();
         } while (!isQuitAction(actionToBePerformed));
     }

@@ -24,12 +24,10 @@ public class Book implements LibraryItem {
 
         Book book = (Book) o;
 
-        if (!name.equals(book.name)) return false;
-        if (!author.equals(book.author)) return false;
-        return yearOfPublictaion.equals(book.yearOfPublictaion);
+        return name.equals(book.name);
 
     }
-
+    
     public boolean match(String givenBookName) {
         return name.equals(givenBookName);
     }

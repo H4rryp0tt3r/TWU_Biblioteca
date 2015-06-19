@@ -14,7 +14,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AppTest {
@@ -47,20 +48,20 @@ public class AppTest {
 
     @Test
     public void shouldBeAbleToPrintWelcomeMessage() {
-        when(mockIOModule.readInput()).thenReturn("4");
-        when(mockMenu.chooseOption(4)).thenReturn(quitAction);
+        when(mockIOModule.readInput()).thenReturn("4\n");
+        when(mockMenu.chooseOption()).thenReturn(quitAction);
         bibliotecaApp.start();
 
-        verify(mockIOModule, times(1)).println(WELCOME_MESSAGE);
+        verify(mockIOModule).println(WELCOME_MESSAGE);
     }
 
     @Test
     public void shouldBeAbleToPeformAnActionBasedOnUserInput() {
-        when(mockIOModule.readInput()).thenReturn("4");
-        when(mockMenu.chooseOption(4)).thenReturn(quitAction);
+        when(mockIOModule.readInput()).thenReturn("4\n");
+        when(mockMenu.chooseOption()).thenReturn(quitAction);
         bibliotecaApp.start();
 
-        verify(mockMenu, times(1)).chooseOption(4);
+        verify(mockMenu).chooseOption();
     }
 
     @After

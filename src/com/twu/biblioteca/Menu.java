@@ -5,15 +5,18 @@ import com.twu.biblioteca.menuactions.MenuAction;
 import java.util.HashMap;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_OPTION;
+import static com.twu.biblioteca.BibliotecaAppConstants.MENU_PROMPT;
 
 // This class will take care of Menu of our Application and it has methods to chooseOption from Menu & addOption to Menu.
 public class Menu {
     private HashMap<Integer, String> optionList;
     private HashMap<Integer, MenuAction> actionList;
+    private IOModule ioModule;
 
-    public Menu(HashMap<Integer, String> optionList, HashMap<Integer, MenuAction> actionList) {
+    public Menu(HashMap<Integer, String> optionList, HashMap<Integer, MenuAction> actionList, IOModule ioModule) {
         this.optionList = optionList;
         this.actionList = actionList;
+        this.ioModule = ioModule;
     }
 
     @Override
@@ -25,7 +28,10 @@ public class Menu {
         return menuText;
     }
 
-    public MenuAction chooseOption(int userChoice) {
+    public MenuAction chooseOption() {
+        ioModule.println(this.toString());
+        ioModule.print(MENU_PROMPT);
+        int userChoice = Integer.parseInt(ioModule.readInput());
         if (isListedInOptions(userChoice))
             return actionList.get(userChoice);
         else

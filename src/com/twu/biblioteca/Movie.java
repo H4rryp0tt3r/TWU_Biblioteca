@@ -21,10 +21,7 @@ public class Movie implements LibraryItem {
 
         Movie movie = (Movie) o;
 
-        if (!name.equals(movie.name)) return false;
-        if (!director.equals(movie.director)) return false;
-        if (!year.equals(movie.year)) return false;
-        return rating.equals(movie.rating);
+        return name.equals(movie.name);
 
     }
 

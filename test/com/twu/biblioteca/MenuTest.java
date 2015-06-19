@@ -5,6 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.BufferedInputStream;
@@ -18,11 +19,14 @@ import java.util.Scanner;
 import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    @Mock
+    IOModule mockIOModule;
     private HashMap<Integer, String> optionList = new HashMap<>();
     private HashMap<Integer, MenuAction> actionList = new HashMap<>();
     private Menu menu;
@@ -49,7 +53,7 @@ public class MenuTest {
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         controller = new Controller(ioModule);
-        menu = new Menu(optionList, actionList);
+        menu = new Menu(optionList, actionList, mockIOModule);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(bookSection, controller));
         menu.addOption(2, CHECKOUT_BOOK_OPTION_DESCRIPTION, new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE));
@@ -72,23 +76,26 @@ public class MenuTest {
 
     @Test
     public void shouldBeAbleToPerformTheCorrectMenuActionOnUserChoice() {
-        String actualInvokedClass = menu.chooseOption(1).getClass().getName();
+        when(mockIOModule.readInput()).thenReturn("1");
+        String actualInvokedClass = menu.chooseOption().getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.ListBooksAction"));
     }
 
     @Test
     public void shouldBeAbleToReturnInvalidActionWhenUserProvidesAnInvalidOption() {
-        String actualInvokedClass = menu.chooseOption(12).getClass().getName();
+        when(mockIOModule.readInput()).thenReturn("12");
+        String actualInvokedClass = menu.chooseOption().getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.InvalidAction"));
     }
 
     @Test
     public void shouldBeAbleToAddAnOptionToExistingMenu() {
+        when(mockIOModule.readInput()).thenReturn("123");
         menu.addOption(123, QUIT_OPTION_DESCRIPTION, new QuitAction());
 
-        String actualInvokedClass = menu.chooseOption(123).getClass().getName();
+        String actualInvokedClass = menu.chooseOption().getClass().getName();
 
         assertThat(actualInvokedClass, is("com.twu.biblioteca.menuactions.QuitAction"));
     }

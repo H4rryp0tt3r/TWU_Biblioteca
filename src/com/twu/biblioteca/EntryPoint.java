@@ -34,7 +34,7 @@ public class EntryPoint {
 
         HashMap<Integer, String> optionList = new HashMap<>();
         HashMap<Integer, MenuAction> actionList = new HashMap<>();
-        Menu menu = new Menu(optionList, actionList);
+        Menu menu = new Menu(optionList, actionList, ioModule);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(bookSection, controller));
         menu.addOption(2, CHECKOUT_BOOK_OPTION_DESCRIPTION, new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE));
