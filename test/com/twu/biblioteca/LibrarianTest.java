@@ -16,4 +16,15 @@ public class LibrarianTest {
 
         assertThat(firstLibrarian, is(secondLibrarian));
     }
+
+    @Test
+    public void shouldFollowTransitiveProperty() {
+        Librarian firstLibrarian = new Librarian("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        Librarian secondLibrarian = new Librarian("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        Librarian thirdLibrarian = new Librarian("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+
+        assertEquals(firstLibrarian, secondLibrarian);
+        assertEquals(secondLibrarian, thirdLibrarian);
+        assertEquals(firstLibrarian, thirdLibrarian);
+    }
 }
