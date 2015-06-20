@@ -1,8 +1,12 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.*;
+import com.twu.biblioteca.Authenticator;
+import com.twu.biblioteca.IOModule;
+import com.twu.biblioteca.LoginListener;
+import com.twu.biblioteca.User;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARY_NUMBER_PROMPT;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARY_PASSWORD_PROMPT;
 
 public class LoginAction implements MenuAction {
     private Authenticator authenticator;

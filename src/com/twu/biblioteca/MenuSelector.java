@@ -21,7 +21,7 @@ public class MenuSelector implements Selector {
             actionToBePerformed = guestMenu.chooseOption();
             actionToBePerformed.execute();
         }
-        while(!isQuitAction(actionToBePerformed));
+        while (!isQuitAction(actionToBePerformed));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class MenuSelector implements Selector {
             actionToBePerformed = memberMenu.chooseOption();
             actionToBePerformed.execute();
         }
-        while(!isQuitAction(actionToBePerformed));
+        while (!isQuitAction(actionToBePerformed));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MenuSelector implements Selector {
             actionToBePerformed = librarianMenu.chooseOption();
             actionToBePerformed.execute();
         }
-        while(!isQuitAction(actionToBePerformed));
+        while (!isQuitAction(actionToBePerformed));
     }
 
     private boolean isQuitAction(MenuAction actionToBePerformed) {

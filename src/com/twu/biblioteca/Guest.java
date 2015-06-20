@@ -7,13 +7,13 @@ public class Guest extends User {
         super("", "", "", "", "");
     }
 
+    public static Guest create() {
+        return new Guest();
+    }
+
     @Override
     public String statusMessage() {
         return INVALID_CREDENTIALS_MESSAGE;
-    }
-
-    public static Guest create() {
-        return new Guest();
     }
 
     @Override

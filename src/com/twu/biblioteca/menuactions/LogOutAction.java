@@ -1,11 +1,10 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.BibliotecaAppConstants;
 import com.twu.biblioteca.Guest;
 import com.twu.biblioteca.IOModule;
 import com.twu.biblioteca.LoginListener;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.BibliotecaAppConstants.LOGOUT_SUCCESS_MESSAGE;
 
 public class LogOutAction implements MenuAction {
     private IOModule ioModule;

@@ -27,7 +27,7 @@ public class Book implements LibraryItem {
         return name.equals(book.name);
 
     }
-    
+
     public boolean match(String givenBookName) {
         return name.equals(givenBookName);
     }

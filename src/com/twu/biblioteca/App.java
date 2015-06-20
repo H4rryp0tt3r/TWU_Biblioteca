@@ -2,8 +2,6 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.menuactions.LogOutAction;
 import com.twu.biblioteca.menuactions.LoginAction;
-import com.twu.biblioteca.menuactions.MenuAction;
-import com.twu.biblioteca.menuactions.QuitAction;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
 

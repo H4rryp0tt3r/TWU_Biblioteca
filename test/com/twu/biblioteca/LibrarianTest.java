@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_CREDENTIALS_MESSAGE;
 import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARIAN_LOGIN_STATUS_MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
