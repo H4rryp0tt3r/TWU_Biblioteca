@@ -13,7 +13,18 @@ public class MemberTest {
         Member firstMember = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
 
         Member secondMember = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
-    
+
         assertThat(firstMember, is(secondMember));
+    }
+
+    @Test
+    public void shouldFollowTransitiveProperty() {
+        Member firstMember = new Member("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        Member secondMember = new Member("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        Member thirdMember = new Member("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+
+        assertEquals(firstMember, secondMember);
+        assertEquals(secondMember, thirdMember);
+        assertEquals(firstMember, thirdMember);
     }
 }
