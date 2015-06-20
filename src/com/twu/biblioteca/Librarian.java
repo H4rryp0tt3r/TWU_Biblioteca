@@ -11,4 +11,9 @@ public class Librarian extends User {
     public String statusMessage() {
         return LIBRARIAN_LOGIN_STATUS_MESSAGE;
     }
+
+    @Override
+    public void acceptSelector(Selector selector) {
+        selector.selectAppropriateMenu(this);
+    }
 }

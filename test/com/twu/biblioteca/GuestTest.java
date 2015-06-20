@@ -36,4 +36,11 @@ public class GuestTest {
 
         assertThat(actualMessage, is(INVALID_CREDENTIALS_MESSAGE));
     }
+
+    @Test
+    public void shoudlBeAbleToCreateANewGuest() {
+        Guest actualCreatedGuest = Guest.create();
+
+        assertThat(actualCreatedGuest, is(new Guest()));
+    }
 }

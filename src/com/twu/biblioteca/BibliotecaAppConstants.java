@@ -27,4 +27,7 @@ public interface BibliotecaAppConstants {
     public static final String INVALID_CREDENTIALS_MESSAGE = "Invalid Credentials! Please Try Again.";
     public static final String LIBRARIAN_LOGIN_STATUS_MESSAGE = "Success!! You logged in as Librarian.";
     public static final String MEMBER_LOGIN_STATUS_MESSAGE = "Success!! You logged in as Member.";
+    public static final String LIBRARY_NUMBER_PROMPT = "Enter your Library Number : ";
+    public static final String LIBRARY_PASSWORD_PROMPT = "Enter your Password : ";
+    public static final String LOGIN_OPTION_DESCRIPTION = "Login Now";
 }

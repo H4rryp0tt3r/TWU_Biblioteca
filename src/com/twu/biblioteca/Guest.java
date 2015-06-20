@@ -11,4 +11,13 @@ public class Guest extends User {
     public String statusMessage() {
         return INVALID_CREDENTIALS_MESSAGE;
     }
+
+    public static Guest create() {
+        return new Guest();
+    }
+
+    @Override
+    public void acceptSelector(Selector selector) {
+        selector.selectAppropriateMenu(this);
+    }
 }

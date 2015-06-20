@@ -32,4 +32,6 @@ public abstract class User {
     }
 
     public abstract String statusMessage();
+
+    public abstract void acceptSelector(Selector selector);
 }

@@ -11,4 +11,9 @@ public class Member extends User {
     public String statusMessage() {
         return MEMBER_LOGIN_STATUS_MESSAGE;
     }
+
+    @Override
+    public void acceptSelector(Selector selector) {
+        selector.selectAppropriateMenu(this);
+    }
 }

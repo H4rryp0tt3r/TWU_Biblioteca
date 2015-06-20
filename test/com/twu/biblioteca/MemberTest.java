@@ -33,7 +33,7 @@ public class MemberTest {
         Member member = new Member("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
 
         String actualMessage = member.statusMessage();
-        
+
         assertThat(actualMessage, is(MEMBER_LOGIN_STATUS_MESSAGE));
     }
 }
