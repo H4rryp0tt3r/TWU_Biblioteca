@@ -30,4 +30,6 @@ public interface BibliotecaAppConstants {
     public static final String LIBRARY_NUMBER_PROMPT = "Enter your Library Number : ";
     public static final String LIBRARY_PASSWORD_PROMPT = "Enter your Password : ";
     public static final String LOGIN_OPTION_DESCRIPTION = "Login Now";
+    public static final String LOGOUT_SUCCESS_MESSAGE = "You have successfully Logged Out!";
+    public static final String LOGOUT_OPTION_DESCRIPTION = "Logout";
 }

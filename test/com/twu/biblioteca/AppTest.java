@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.menuactions.ListBooksAction;
+import com.twu.biblioteca.menuactions.LogOutAction;
 import com.twu.biblioteca.menuactions.LoginAction;
 import com.twu.biblioteca.menuactions.QuitAction;
 import org.junit.After;
@@ -33,11 +34,14 @@ public class AppTest {
     @Mock
     LoginAction mockLoginAction;
 
+    @Mock
+    LogOutAction mockLogOutAction;
+
     private App bibliotecaApp;
 
     @Before
     public void setUp() {
-        bibliotecaApp = new App(mockIOModule, mockMenuSelector, mockUser, mockLoginAction);
+        bibliotecaApp = new App(mockIOModule, mockMenuSelector, mockUser, mockLoginAction, mockLogOutAction);
     }
 
     @Test

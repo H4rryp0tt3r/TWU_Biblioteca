@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuactions.LogOutAction;
 import com.twu.biblioteca.menuactions.LoginAction;
 import com.twu.biblioteca.menuactions.MenuAction;
 import com.twu.biblioteca.menuactions.QuitAction;
@@ -12,13 +13,16 @@ public class App implements LoginListener {
     private MenuSelector menuSelector;
     private User user;
     private LoginAction loginAction;
+    private LogOutAction logOutAction;
 
-    public App(IOModule ioModule, MenuSelector menuSelector, User user, LoginAction loginAction) {
+    public App(IOModule ioModule, MenuSelector menuSelector, User user, LoginAction loginAction, LogOutAction logOutAction) {
         this.ioModule = ioModule;
         this.menuSelector = menuSelector;
         this.user = user;
         this.loginAction = loginAction;
         this.loginAction.addListener(this);
+        this.logOutAction = logOutAction;
+        this.logOutAction.addListener(this);
     }
 
     public void start() {

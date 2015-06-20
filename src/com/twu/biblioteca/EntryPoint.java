@@ -39,6 +39,7 @@ public class EntryPoint {
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         LoginAction loginAction = new LoginAction(authenticator, ioModule);
+        LogOutAction logOutAction = new LogOutAction(ioModule);
 
         HashMap<Integer, String> guestOptionList = new HashMap<>();
         HashMap<Integer, MenuAction> guestActionList = new HashMap<>();
@@ -58,11 +59,11 @@ public class EntryPoint {
         memberMenu.addOption(4, LIST_MOVIES_OPTION_DESCRIPTION, new ListMoviesAction(movieSection, controller));
         memberMenu.addOption(5, CHECKOUT_MOVIE_OPTION_DESCRIPTION, new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE));
         memberMenu.addOption(6, RETURN_MOVIE_OPTION_DESCRIPTION, new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE));
-        memberMenu.addOption(7, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        memberMenu.addOption(7, LOGOUT_OPTION_DESCRIPTION, logOutAction);
 
         HashMap<Integer, String> librarianOptionList = new HashMap<>();
         HashMap<Integer, MenuAction> librarianActionList = new HashMap<>();
-        Menu librarianMenu = new Menu(memberOptionList, memberActionList, ioModule);
+        Menu librarianMenu = new Menu(librarianOptionList, librarianActionList, ioModule);
         librarianMenu.addOption(-1, null, new InvalidAction());
         librarianMenu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(bookSection, controller));
         librarianMenu.addOption(2, CHECKOUT_BOOK_OPTION_DESCRIPTION, new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE));
@@ -70,13 +71,14 @@ public class EntryPoint {
         librarianMenu.addOption(4, LIST_MOVIES_OPTION_DESCRIPTION, new ListMoviesAction(movieSection, controller));
         librarianMenu.addOption(5, CHECKOUT_MOVIE_OPTION_DESCRIPTION, new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE));
         librarianMenu.addOption(6, RETURN_MOVIE_OPTION_DESCRIPTION, new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE));
-        librarianMenu.addOption(7, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        librarianMenu.addOption(7, LOGOUT_OPTION_DESCRIPTION, logOutAction);
+        librarianMenu.addOption(8, QUIT_OPTION_DESCRIPTION, new QuitAction());
 
         MenuSelector menuSelector = new MenuSelector(guestMenu, memberMenu, librarianMenu);
 
         User user = new Guest();
 
-        App bibliotecaApp = new App(ioModule, menuSelector, user, loginAction);
+        App bibliotecaApp = new App(ioModule, menuSelector, user, loginAction, logOutAction);
         bibliotecaApp.start();
     }
 }
