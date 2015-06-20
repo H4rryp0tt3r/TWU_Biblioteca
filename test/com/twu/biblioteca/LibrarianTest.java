@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Test;
 
 import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_CREDENTIALS_MESSAGE;
+import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARIAN_LOGIN_STATUS_MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -26,5 +27,14 @@ public class LibrarianTest {
         assertEquals(firstLibrarian, secondLibrarian);
         assertEquals(secondLibrarian, thirdLibrarian);
         assertEquals(firstLibrarian, thirdLibrarian);
+    }
+
+    @Test
+    public void shouldBeAbleToPrintStatusMessage() {
+        Librarian librarian = new Librarian("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+
+        String actualMessage = librarian.statusMessage();
+
+        assertThat(actualMessage, is(LIBRARIAN_LOGIN_STATUS_MESSAGE));
     }
 }
