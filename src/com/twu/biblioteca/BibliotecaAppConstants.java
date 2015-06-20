@@ -24,4 +24,5 @@ public interface BibliotecaAppConstants {
     public static final String FAILED_MOVIE_CHECKOUT_MESSAGE = "That movie is not available";
     public static final String SUCCESSFUL_MOVIE_RETURN_MESSAGE = "Thank you for returning the Movie";
     public static final String FAILED_MOVIE_RETURN_MESSAGE = "That is not a valid Movie to return";
+    public static final String INVALID_CREDENTIALS_MESSAGE = "Invalid Credentials! Please Try Again.";
 }
