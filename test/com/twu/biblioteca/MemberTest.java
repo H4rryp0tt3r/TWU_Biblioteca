@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARIAN_LOGIN_STATUS_MESSAGE;
+import static com.twu.biblioteca.BibliotecaAppConstants.MEMBER_LOGIN_STATUS_MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -26,5 +26,14 @@ public class MemberTest {
         assertEquals(firstMember, secondMember);
         assertEquals(secondMember, thirdMember);
         assertEquals(firstMember, thirdMember);
+    }
+
+    @Test
+    public void shouldBeAbleToPrintStatusMessage() {
+        Member member = new Member("111-1111", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+
+        String actualMessage = member.statusMessage();
+        
+        assertThat(actualMessage, is(MEMBER_LOGIN_STATUS_MESSAGE));
     }
 }
