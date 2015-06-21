@@ -32,4 +32,6 @@ public interface BibliotecaAppConstants {
     public static final String LOGIN_OPTION_DESCRIPTION = "Login Now";
     public static final String LOGOUT_SUCCESS_MESSAGE = "You have successfully Logged Out!";
     public static final String LOGOUT_OPTION_DESCRIPTION = "Logout";
+    public static final String USER_DETAILS_FORMAT_PATTERN = "| Library Number : %s |\n| Full Name : %s |\n| Email Address : %s |\n| Phone Number : %s|\n";
+    public static final String PRINT_PROFILE_OPTION_DESCRIPTION = "Your Profile";
 }

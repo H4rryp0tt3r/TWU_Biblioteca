@@ -21,6 +21,8 @@ public class EntryPoint {
         userDB.add(new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890"));
         userDB.add(new Librarian("111-1111", "password", "Librarian", "librarian@librarians.com", "9876543210"));
 
+        User user = new Guest();
+
         Authenticator authenticator = new Authenticator(userDB);
 
         List<LibraryItem> availableBooksList = new ArrayList<>();
@@ -38,8 +40,10 @@ public class EntryPoint {
         List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
-        LoginAction loginAction = new LoginAction(authenticator, ioModule);
+        List<LoginListener> listenerList = new ArrayList<>();
+        LoginAction loginAction = new LoginAction(authenticator, ioModule, listenerList);
         LogOutAction logOutAction = new LogOutAction(ioModule);
+        PrintProfileAction printProfileAction = new PrintProfileAction(ioModule, loginAction);
 
         HashMap<Integer, String> guestOptionList = new HashMap<>();
         HashMap<Integer, MenuAction> guestActionList = new HashMap<>();
@@ -59,7 +63,8 @@ public class EntryPoint {
         memberMenu.addOption(4, LIST_MOVIES_OPTION_DESCRIPTION, new ListMoviesAction(movieSection, controller));
         memberMenu.addOption(5, CHECKOUT_MOVIE_OPTION_DESCRIPTION, new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE));
         memberMenu.addOption(6, RETURN_MOVIE_OPTION_DESCRIPTION, new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE));
-        memberMenu.addOption(7, LOGOUT_OPTION_DESCRIPTION, logOutAction);
+        memberMenu.addOption(7, PRINT_PROFILE_OPTION_DESCRIPTION, printProfileAction);
+        memberMenu.addOption(8, LOGOUT_OPTION_DESCRIPTION, logOutAction);
 
         HashMap<Integer, String> librarianOptionList = new HashMap<>();
         HashMap<Integer, MenuAction> librarianActionList = new HashMap<>();
@@ -71,12 +76,12 @@ public class EntryPoint {
         librarianMenu.addOption(4, LIST_MOVIES_OPTION_DESCRIPTION, new ListMoviesAction(movieSection, controller));
         librarianMenu.addOption(5, CHECKOUT_MOVIE_OPTION_DESCRIPTION, new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE));
         librarianMenu.addOption(6, RETURN_MOVIE_OPTION_DESCRIPTION, new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE));
-        librarianMenu.addOption(7, LOGOUT_OPTION_DESCRIPTION, logOutAction);
-        librarianMenu.addOption(8, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        librarianMenu.addOption(7, PRINT_PROFILE_OPTION_DESCRIPTION, printProfileAction);
+        librarianMenu.addOption(8, LOGOUT_OPTION_DESCRIPTION, logOutAction);
+        librarianMenu.addOption(9, QUIT_OPTION_DESCRIPTION, new QuitAction());
 
         MenuSelector menuSelector = new MenuSelector(guestMenu, memberMenu, librarianMenu);
 
-        User user = new Guest();
 
         App bibliotecaApp = new App(ioModule, menuSelector, user, loginAction, logOutAction);
         bibliotecaApp.start();

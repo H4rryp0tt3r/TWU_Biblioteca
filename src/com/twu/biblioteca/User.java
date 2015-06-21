@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import static com.twu.biblioteca.BibliotecaAppConstants.USER_DETAILS_FORMAT_PATTERN;
+
 public abstract class User {
     private String libraryNumber;
     private String password;
@@ -29,6 +31,11 @@ public abstract class User {
         if (!libraryNumber.equals(user.libraryNumber)) return false;
         return password.equals(user.password);
 
+    }
+
+    @Override
+    public String toString() {
+        return String.format(USER_DETAILS_FORMAT_PATTERN, libraryNumber, name, emailAddress, phoneNumber);
     }
 
     public abstract String statusMessage();
