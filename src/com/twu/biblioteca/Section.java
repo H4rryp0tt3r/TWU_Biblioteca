@@ -1,15 +1,16 @@
 package com.twu.biblioteca;
 
+import java.util.HashMap;
 import java.util.List;
 
 // This class will holds list of books & a checkout Record. And has methods to Checkout & Return a Book.
 public class Section {
 
     private List<LibraryItem> availableItemsList;
-    private List<LibraryItem> checkedOutItemsList;
+    private HashMap<User, List<LibraryItem>> checkedOutItemsList;
     private List<LibraryItem> searchResultsList;
 
-    public Section(List<LibraryItem> availableItemsList, List<LibraryItem> checkedOutItemsList, List<LibraryItem> searchResultsList) {
+    public Section(List<LibraryItem> availableItemsList, HashMap<User, List<LibraryItem>> checkedOutItemsList, List<LibraryItem> searchResultsList) {
         this.availableItemsList = availableItemsList;
         this.checkedOutItemsList = checkedOutItemsList;
         this.searchResultsList = searchResultsList;
@@ -32,29 +33,41 @@ public class Section {
         return searchResultsList;
     }
 
-    public boolean checkOut(String itemName) {
+    public boolean checkOut(String itemName, User user) {
         searchResultsList.clear();
         searchItemsByName(itemName, availableItemsList);
         for (LibraryItem libraryItem : searchResultsList) {
             synchronized (this) {
                 availableItemsList.remove(libraryItem);
-                checkedOutItemsList.add(libraryItem);
+                addItemToCheckedOutItemsList(user, libraryItem);
             }
             return true;
         }
         return false;
     }
 
-    public boolean returnItem(String itemName) {
+    public boolean returnItem(String itemName, User user) {
         searchResultsList.clear();
-        searchItemsByName(itemName, checkedOutItemsList);
+        searchItemsByName(itemName, checkedOutItemsList.get(user));
         for (LibraryItem libraryItem : searchResultsList) {
             synchronized (this) {
-                checkedOutItemsList.remove(libraryItem);
+                removeItemfromCheckedOutItemsList(user, libraryItem);
                 availableItemsList.add(libraryItem);
             }
             return true;
         }
         return false;
+    }
+
+    private void addItemToCheckedOutItemsList(User user, LibraryItem libraryItem) {
+        List<LibraryItem> newItemsList = checkedOutItemsList.get(user);
+        newItemsList.add(libraryItem);
+        checkedOutItemsList.put(user, newItemsList);
+    }
+
+    private void removeItemfromCheckedOutItemsList(User user, LibraryItem libraryItem) {
+        List<LibraryItem> currentItemsList = checkedOutItemsList.get(user);
+        currentItemsList.remove(libraryItem);
+        checkedOutItemsList.put(user, currentItemsList);
     }
 }

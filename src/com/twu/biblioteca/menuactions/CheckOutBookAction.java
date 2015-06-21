@@ -25,8 +25,7 @@ public class CheckOutBookAction implements MenuAction, LoginListener {
 
     @Override
     public void execute() {
-        controller.checkOutAnItem(bookSection, successStatusMessage, failedStatusMessage);
-
+        controller.checkOutAnItem(bookSection, successStatusMessage, failedStatusMessage, user);
     }
 
     @Override

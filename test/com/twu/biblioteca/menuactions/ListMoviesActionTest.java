@@ -9,6 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +25,11 @@ public class ListMoviesActionTest {
     @Before
     public void setUp() {
         List<LibraryItem> availableMoviesList = new ArrayList<>();
-        List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
+        User member = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        HashMap<User, List<LibraryItem>> checkedOutMoviesList = new HashMap<>();
+        List<LibraryItem> movies = new ArrayList<>();
+        movies.add(new Movie("Movie1", "Nagesh", "1994", "Unrated"));
+        checkedOutMoviesList.put(member, movies);
         List<LibraryItem> searchResultsList = new ArrayList<>();
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Harry Potter", "Nagesh", "2023", "7.9"));

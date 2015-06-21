@@ -8,6 +8,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,16 +20,21 @@ public class SectionTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private List<LibraryItem> availableBooksList;
-    private List<LibraryItem> checkedOutBooksList;
+    private HashMap<User, List<LibraryItem>> checkedOutBooksList;
     private List<LibraryItem> searchResultsList;
     private IOModule ioModule;
     private Controller controller;
     private Section bookSection;
+    private User member;
 
     @Before
     public void setUp() {
         availableBooksList = new ArrayList<>();
-        checkedOutBooksList = new ArrayList<>();
+        checkedOutBooksList = new HashMap<>();
+        member = new Member("123-4567", "password", "Nagesh", "nagesh@gmail.com", "password");
+        List<LibraryItem> books = new ArrayList<>();
+        books.add(new Book("Sample Book1", "Nagesh", "2009"));
+        checkedOutBooksList.put(member, books);
         searchResultsList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
@@ -61,49 +67,39 @@ public class SectionTest {
 
     @Test
     public void shouldBeAbleToReturnTrueUponASuccessfulCheckOut() {
-        Boolean actualResult = bookSection.checkOut("Sample Book1");
+        Boolean actualResult = bookSection.checkOut("Sample Book1", member);
 
         assertThat(actualResult, is(true));
     }
 
     @Test
     public void shouldBeAbleToReturnFalseUponAFailedCheckOut() {
-        boolean actualResult = bookSection.checkOut("Sample Book0");
+        boolean actualResult = bookSection.checkOut("Sample Book0", member);
 
         assertThat(actualResult, is(false));
     }
 
     @Test
     public void shouldBeAbleToReturnFalseWhenUserTriesToCheckOutABookThatIsAlreadyCheckedOut() {
-        bookSection.checkOut("Sample Book1");
+        bookSection.checkOut("Sample Book1", member);
 
-        boolean actualResult = bookSection.checkOut("Sample Book1");
+        boolean actualResult = bookSection.checkOut("Sample Book1", member);
 
         assertThat(actualResult, is(false));
     }
 
     @Test
     public void shouldBeAbleToReturnTrueUponASuccessfulReturn() {
-        bookSection.checkOut("Sample Book1");
+        bookSection.checkOut("Sample Book1", member);
 
-        boolean actualStatusMessage = bookSection.returnItem("Sample Book1");
+        boolean actualStatusMessage = bookSection.returnItem("Sample Book1", member);
 
         assertThat(actualStatusMessage, is(true));
     }
 
     @Test
     public void shouldBeAbleToReturnFalseUponAFailedReturn() {
-        boolean actualResult = bookSection.returnItem("Sample Book0");
-
-        assertThat(actualResult, is(false));
-    }
-
-    @Test
-    public void shouldBeAbleToReturnFalseWhenUserTriesToReturnABookThatIsAlreadyReturned() {
-        bookSection.checkOut("Sample Book1");
-        bookSection.returnItem("Sample Book1");
-
-        boolean actualResult = bookSection.returnItem("Sample Book1");
+        boolean actualResult = bookSection.returnItem("Sample Book0", member);
 
         assertThat(actualResult, is(false));
     }

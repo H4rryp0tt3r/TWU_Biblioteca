@@ -25,7 +25,7 @@ public class ReturnMovieAction implements MenuAction, LoginListener {
 
     @Override
     public void execute() {
-        controller.returnAnItem(movieSection, successStatusMessage, failedStatusMessage);
+        controller.returnAnItem(movieSection, successStatusMessage, failedStatusMessage, user);
     }
 
     @Override

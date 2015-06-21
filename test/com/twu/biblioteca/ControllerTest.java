@@ -23,6 +23,8 @@ public class ControllerTest {
     IOModule mockIOModule;
     @Mock
     Section mockSection;
+    @Mock
+    User user;
     private Controller controller;
 
     @Before
@@ -43,17 +45,17 @@ public class ControllerTest {
     @Test
     public void shouldBeAbleToCheckOutAnItemFromCorrespondingSection() {
         when(mockIOModule.readInput()).thenReturn("Sample Book1");
-        controller.checkOutAnItem(mockSection, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE);
+        controller.checkOutAnItem(mockSection, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE, user);
 
-        verify(mockSection).checkOut("Sample Book1");
+        verify(mockSection).checkOut("Sample Book1", user);
     }
 
     @Test
     public void shoudlBeAbleToReturnAnItemToCorrespondingSection() {
         when(mockIOModule.readInput()).thenReturn("H4rryp0tt3r");
-        controller.returnAnItem(mockSection, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE);
+        controller.returnAnItem(mockSection, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE, user);
 
-        verify(mockSection).returnItem("H4rryp0tt3r");
+        verify(mockSection).returnItem("H4rryp0tt3r", user);
     }
 
     @After

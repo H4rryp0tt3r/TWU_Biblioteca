@@ -17,11 +17,13 @@ public class EntryPoint {
 
         Controller controller = new Controller(ioModule);
 
+        User guest = new Guest();
+        User member = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        User librarian = new Librarian("111-1111", "password", "Librarian", "librarian@librarians.com", "9876543210");
         List<User> userDB = new ArrayList<>();
-        userDB.add(new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890"));
-        userDB.add(new Librarian("111-1111", "password", "Librarian", "librarian@librarians.com", "9876543210"));
+        userDB.add(member);
+        userDB.add(librarian);
 
-        User user = new Guest();
 
         Authenticator authenticator = new Authenticator(userDB);
 
@@ -29,7 +31,7 @@ public class EntryPoint {
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
-        List<LibraryItem> checkedOutBooksList = new ArrayList<>();
+        HashMap<User, List<LibraryItem>> checkedOutBooksList = new HashMap<>();
         List<LibraryItem> searchResultsList = new ArrayList<>();
         Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
 
@@ -37,7 +39,7 @@ public class EntryPoint {
         availableMoviesList.add(new Movie("H4rryp0tt3r", "Nagesh", "2030", "7.9"));
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
-        List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
+        HashMap<User, List<LibraryItem>> checkedOutMoviesList = new HashMap<>();
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         List<LoginListener> listenerList = new ArrayList<>();
@@ -91,7 +93,7 @@ public class EntryPoint {
         MenuSelector menuSelector = new MenuSelector(guestMenu, memberMenu, librarianMenu);
 
 
-        App bibliotecaApp = new App(ioModule, menuSelector, user, loginAction, logOutAction);
+        App bibliotecaApp = new App(ioModule, menuSelector, guest, loginAction, logOutAction);
         bibliotecaApp.start();
     }
 }

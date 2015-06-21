@@ -13,19 +13,19 @@ public class Controller {
         ioModule.println(sectionOfItems.displayAvailableItemsWithAllDetails());
     }
 
-    public void checkOutAnItem(Section sectionOfItems, String successStatusMessage, String failedStatusMessage) {
+    public void checkOutAnItem(Section sectionOfItems, String successStatusMessage, String failedStatusMessage, User user) {
         ioModule.print(NAME_PROMPT_MESSAGE);
         String itemName = ioModule.readInput();
-        if (sectionOfItems.checkOut(itemName))
+        if (sectionOfItems.checkOut(itemName, user))
             ioModule.println(successStatusMessage);
         else
             ioModule.println(failedStatusMessage);
     }
 
-    public void returnAnItem(Section sectionOfItems, String successStatusMessage, String failedStatusMessage) {
+    public void returnAnItem(Section sectionOfItems, String successStatusMessage, String failedStatusMessage, User user) {
         ioModule.print(NAME_PROMPT_MESSAGE);
         String itemName = ioModule.readInput();
-        if (sectionOfItems.returnItem(itemName))
+        if (sectionOfItems.returnItem(itemName, user))
             ioModule.println(successStatusMessage);
         else
             ioModule.println(failedStatusMessage);

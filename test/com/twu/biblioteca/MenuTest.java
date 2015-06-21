@@ -38,7 +38,11 @@ public class MenuTest {
         ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
 
         List<LibraryItem> availableBooksList = new ArrayList<>();
-        List<LibraryItem> checkedOutBooksList = new ArrayList<>();
+        User member = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        HashMap<User, List<LibraryItem>> checkedOutBooksList = new HashMap<>();
+        List<LibraryItem> books = new ArrayList<>();
+        books.add(new Book("Sample Book1", "Nagesh", "2009"));
+        checkedOutBooksList.put(member, books);
         List<LibraryItem> searchResultsList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
@@ -49,7 +53,10 @@ public class MenuTest {
         availableMoviesList.add(new Movie("H4rryp0tt3r", "Nagesh", "2030", "7.9"));
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
-        List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
+        HashMap<User, List<LibraryItem>> checkedOutMoviesList = new HashMap<>();
+        List<LibraryItem> movies = new ArrayList<>();
+        movies.add(new Movie("Movie1", "Nagesh", "1994", "Unrated"));
+        checkedOutMoviesList.put(member, movies);
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         controller = new Controller(ioModule);

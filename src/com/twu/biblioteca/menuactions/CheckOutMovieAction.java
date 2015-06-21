@@ -25,7 +25,7 @@ public class CheckOutMovieAction implements MenuAction, LoginListener {
 
     @Override
     public void execute() {
-        controller.checkOutAnItem(movieSection, successStatusMessage, failedStatusMessage);
+        controller.checkOutAnItem(movieSection, successStatusMessage, failedStatusMessage, user);
     }
 
     @Override

@@ -1,61 +1,41 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.*;
+import com.twu.biblioteca.Controller;
+import com.twu.biblioteca.Section;
+import com.twu.biblioteca.User;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static com.twu.biblioteca.BibliotecaAppConstants.FAILED_MOVIE_CHECKOUT_MESSAGE;
+import static com.twu.biblioteca.BibliotecaAppConstants.SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CheckOutMovieActionTest {
-    private final ByteArrayInputStream inContent = new ByteArrayInputStream("Interstellar\n".getBytes());
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private Section movieSection;
-    private IOModule ioModule;
-    private Controller controller;
 
     @Mock
-    LoginAction loginAction;
+    Section movieSection;
 
-    @Before
-    public void setUp() {
-        List<LibraryItem> availableMoviesList = new ArrayList<>();
-        List<LibraryItem> checkedOutMoviesList = new ArrayList<>();
-        List<LibraryItem> searchResultsList = new ArrayList<>();
-        availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
-        availableMoviesList.add(new Movie("Harry Potter", "Nagesh", "2023", "7.9"));
-        availableMoviesList.add(new Movie("Minions", "Gru", "2015", "Unrated"));
-        ioModule = new IOModule(new Scanner(new BufferedInputStream(inContent)), new PrintStream(outContent));
-        movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
-        controller = new Controller(ioModule);
-        System.setIn(inContent);
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
-    }
+    @Mock
+    User mockUser;
+
+    @Mock
+    Controller mockController;
+
+    @Mock
+    LoginAction mockLoginAction;
+
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() {
-        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, loginAction);
+        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, mockController, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, mockLoginAction);
+        checkOutMovieAction.update(mockUser);
         checkOutMovieAction.execute();
 
-        String actualStatusMessage = outContent.toString();
-
-        assertThat(actualStatusMessage, is(NAME_PROMPT_MESSAGE + SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE + "\n"));
+        verify(mockController).checkOutAnItem(movieSection,SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, mockUser);
     }
 
     @After

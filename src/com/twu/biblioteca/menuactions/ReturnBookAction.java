@@ -25,7 +25,7 @@ public class ReturnBookAction implements MenuAction, LoginListener {
 
     @Override
     public void execute() {
-        controller.returnAnItem(bookSection, successStatusMessage, failedStatusMessage);
+        controller.returnAnItem(bookSection, successStatusMessage, failedStatusMessage, user);
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +25,11 @@ public class ListBooksActionTest {
     @Before
     public void setUp() {
         List<LibraryItem> availableBooksList = new ArrayList<>();
-        List<LibraryItem> checkedOutBooksList = new ArrayList<>();
+        User member = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
+        HashMap<User, List<LibraryItem>> checkedOutBooksList = new HashMap<>();
+        List<LibraryItem> books = new ArrayList<>();
+        books.add(new Book("Sample Book1", "Nagesh", "2009"));
+        checkedOutBooksList.put(member, books);
         List<LibraryItem> searchResultsList = new ArrayList<>();
         availableBooksList.add(new Book("Sample Book1", "Nagesh", "2009"));
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
