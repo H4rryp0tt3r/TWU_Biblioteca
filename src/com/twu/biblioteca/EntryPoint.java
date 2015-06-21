@@ -32,6 +32,8 @@ public class EntryPoint {
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         HashMap<User, List<LibraryItem>> checkedOutBooksList = new HashMap<>();
+        checkedOutBooksList.put(member, new ArrayList<LibraryItem>());
+        checkedOutBooksList.put(librarian, new ArrayList<LibraryItem>());
         List<LibraryItem> searchResultsList = new ArrayList<>();
         Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
 

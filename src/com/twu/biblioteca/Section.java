@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,7 +49,8 @@ public class Section {
 
     public boolean returnItem(String itemName, User user) {
         searchResultsList.clear();
-        searchItemsByName(itemName, checkedOutItemsList.get(user));
+        List<LibraryItem> checkedOutItems = checkedOutItemsList.get(user);
+        searchItemsByName(itemName, checkedOutItems);
         for (LibraryItem libraryItem : searchResultsList) {
             synchronized (this) {
                 removeItemfromCheckedOutItemsList(user, libraryItem);
