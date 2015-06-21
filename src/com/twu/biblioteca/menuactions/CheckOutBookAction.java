@@ -11,18 +11,22 @@ public class CheckOutBookAction implements MenuAction, LoginListener {
     private Controller controller;
     private String successStatusMessage;
     private String failedStatusMessage;
+    private LoginAction loginAction;
     private User user;
 
-    public CheckOutBookAction(Section bookSection, Controller controller, String successStatusMessage, String failedStatusMessage) {
+    public CheckOutBookAction(Section bookSection, Controller controller, String successStatusMessage, String failedStatusMessage, LoginAction loginActionParam) {
         this.bookSection = bookSection;
         this.controller = controller;
         this.successStatusMessage = successStatusMessage;
         this.failedStatusMessage = failedStatusMessage;
+        this.loginAction = loginActionParam;
+        loginAction.addListener(this);
     }
 
     @Override
     public void execute() {
         controller.checkOutAnItem(bookSection, successStatusMessage, failedStatusMessage);
+
     }
 
     @Override

@@ -9,10 +9,10 @@ public class PrintProfileAction implements MenuAction, LoginListener {
     private LoginAction loginAction;
     private IOModule ioModule;
 
-    public PrintProfileAction(IOModule ioModule, LoginAction loginAction) {
+    public PrintProfileAction(IOModule ioModule, LoginAction loginActionParam) {
         this.ioModule = ioModule;
-        this.loginAction = loginAction;
-        this.loginAction.addListener(this);
+        this.loginAction = loginActionParam;
+        loginAction.addListener(this);
     }
 
     @Override

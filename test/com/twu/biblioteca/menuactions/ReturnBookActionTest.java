@@ -4,6 +4,9 @@ import com.twu.biblioteca.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -17,6 +20,7 @@ import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ReturnBookActionTest {
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("Sample Book1\n".getBytes());
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -24,6 +28,9 @@ public class ReturnBookActionTest {
     private Section bookSection;
     private IOModule ioModule;
     private Controller controller;
+
+    @Mock
+    LoginAction loginAction;
 
     @Before
     public void setUp() {
@@ -43,7 +50,7 @@ public class ReturnBookActionTest {
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() {
-        ReturnBookAction returnBookAction = new ReturnBookAction(bookSection, controller, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE);
+        ReturnBookAction returnBookAction = new ReturnBookAction(bookSection, controller, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE, loginAction);
         returnBookAction.execute();
 
         String actualStatusMessage = outContent.toString();

@@ -4,6 +4,9 @@ import com.twu.biblioteca.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -17,6 +20,7 @@ import static com.twu.biblioteca.BibliotecaAppConstants.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@RunWith(MockitoJUnitRunner.class)
 public class CheckOutMovieActionTest {
     private final ByteArrayInputStream inContent = new ByteArrayInputStream("Interstellar\n".getBytes());
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -24,6 +28,9 @@ public class CheckOutMovieActionTest {
     private Section movieSection;
     private IOModule ioModule;
     private Controller controller;
+
+    @Mock
+    LoginAction loginAction;
 
     @Before
     public void setUp() {
@@ -43,7 +50,7 @@ public class CheckOutMovieActionTest {
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() {
-        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE);
+        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, loginAction);
         checkOutMovieAction.execute();
 
         String actualStatusMessage = outContent.toString();

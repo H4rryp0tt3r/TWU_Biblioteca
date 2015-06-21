@@ -56,12 +56,8 @@ public class MenuTest {
         menu = new Menu(optionList, actionList, mockIOModule);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(bookSection, controller));
-        menu.addOption(2, CHECKOUT_BOOK_OPTION_DESCRIPTION, new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE));
-        menu.addOption(3, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnBookAction(bookSection, controller, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE));
-        menu.addOption(4, LIST_MOVIES_OPTION_DESCRIPTION, new ListMoviesAction(movieSection, controller));
-        menu.addOption(5, CHECKOUT_MOVIE_OPTION_DESCRIPTION, new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE));
-        menu.addOption(6, RETURN_BOOK_OPTION_DESCRIPTION, new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE));
-        menu.addOption(7, QUIT_OPTION_DESCRIPTION, new QuitAction());
+        menu.addOption(2, LIST_MOVIES_OPTION_DESCRIPTION, new ListMoviesAction(movieSection, controller));
+        menu.addOption(3, QUIT_OPTION_DESCRIPTION, new QuitAction());
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
     }
@@ -70,8 +66,7 @@ public class MenuTest {
     public void shouldBeAbleToPrintMenuInRequiredFormat() {
         String actualMenu = menu.toString();
 
-        assertThat(actualMenu, is("1) List Books\n2) Checkout A Book\n3) Return A Book\n4) List Movies\n" +
-                "5) Checkout A Movie\n6) Return A Book\n7) Quit\n"));
+        assertThat(actualMenu, is("1) List Books\n2) List Movies\n3) Quit\n"));
     }
 
     @Test
