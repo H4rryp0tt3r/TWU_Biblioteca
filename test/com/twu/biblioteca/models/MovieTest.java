@@ -33,7 +33,7 @@ public class MovieTest {
 
         String actualResponse = movie.toString();
 
-        assertThat(actualResponse, is("Interstellar                             | Nolan                     | 2015 | 8.9  "));
+        assertThat(actualResponse, is("Interstellar                  | Nolan                     | 2015 | 8.9      "));
     }
 
     @Test

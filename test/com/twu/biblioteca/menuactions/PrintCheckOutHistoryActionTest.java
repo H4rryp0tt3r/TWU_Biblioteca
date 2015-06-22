@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,20 +24,14 @@ public class PrintCheckOutHistoryActionTest {
     IOModule mockIOModule;
 
     @Test
-    public void shouldBeAbleToDisplayCheckedOutBookHistory() {
+    public void shouldBeAbleToDisplayCheckOutHistory() {
         PrintCheckOutHistoryAction printCheckOutHistoryAction = new PrintCheckOutHistoryAction(mockBookSection, mockMovieSection, mockIOModule);
-        when(mockBookSection.displayCheckedOutItemDetails()).thenReturn("details");
+        when(mockMovieSection.displayCheckedOutItemDetails()).thenReturn("MoviesDetails");
+        when(mockBookSection.displayCheckedOutItemDetails()).thenReturn("BooksDetails");
         printCheckOutHistoryAction.execute();
 
-        verify(mockIOModule).println("details");
-    }
-
-    @Test
-    public void shouldBeAbleToDisplayCheckOutMoviesHistory() {
-        PrintCheckOutHistoryAction printCheckOutHistoryAction = new PrintCheckOutHistoryAction(mockBookSection, mockMovieSection, mockIOModule);
-        when(mockMovieSection.displayCheckedOutItemDetails()).thenReturn("details");
-        printCheckOutHistoryAction.execute();
-
-        verify(mockIOModule).println("details");
+        verify(mockIOModule).println("\n------------------------------------------------------------------------------------------------------------------");
+        verify(mockIOModule).print("BooksDetailsMoviesDetails");
+        verify(mockIOModule).print("------------------------------------------------------------------------------------------------------------------\n\n");
     }
 }

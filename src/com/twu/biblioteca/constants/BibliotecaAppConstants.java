@@ -1,7 +1,9 @@
 package com.twu.biblioteca.constants;
 
 public interface BibliotecaAppConstants {
-    public static final String WELCOME_MESSAGE = "=== > Welcome to Biblioteca! < ===";
+    public static final String WELCOME_MESSAGE = "+--------------------------------------------------+\n" +
+            "|              Welcome to Biblioteca               |\n" +
+            "+--------------------------------------------------+\n";
     public static final String LIST_BOOKS_OPTION_DESCRPTION = "List Books";
     public static final String QUIT_OPTION_DESCRIPTION = "Quit";
     public static final String COLUMN_SEPARATOR = "|";
@@ -15,7 +17,7 @@ public interface BibliotecaAppConstants {
     public static final String SUCCESSFUL_BOOK_RETURN_MESSAGE = "Thank you for returning the Book";
     public static final String FAILED_BOOK_RETURN_MESSAGE = "That is not a valid Book to return";
     public static final String MENU_PROMPT = "Enter your Option : ";
-    public static final String MOVIE_DETAILS_FORMAT_PATTERN = "%-40s " + COLUMN_SEPARATOR + " %-25s " + COLUMN_SEPARATOR + " %-5s" + COLUMN_SEPARATOR + " %-5s";
+    public static final String MOVIE_DETAILS_FORMAT_PATTERN = "%-29s " + COLUMN_SEPARATOR + " %-25s " + COLUMN_SEPARATOR + " %-5s" + COLUMN_SEPARATOR + " %-9s";
     public static final String NAME_PROMPT_MESSAGE = "Enter Name : ";
     public static final String LIST_MOVIES_OPTION_DESCRIPTION = "List Movies";
     public static final String CHECKOUT_MOVIE_OPTION_DESCRIPTION = "Checkout A Movie";

@@ -52,9 +52,11 @@ public class ListMoviesActionTest {
 
         String actualResponse = outContent.toString();
 
-        assertThat(actualResponse, is("Interstellar                             | Nolan                     | 2015 | 8.9  \n" +
-                "Harry Potter                             | Nagesh                    | 2023 | 7.9  \n" +
-                "Minions                                  | Gru                       | 2015 | Unrated\n\n"));
+        assertThat(actualResponse, is("\n-------------------------------------------------------------------------------\n" +
+                "| Interstellar                  | Nolan                     | 2015 | 8.9      |\n" +
+                "| Harry Potter                  | Nagesh                    | 2023 | 7.9      |\n" +
+                "| Minions                       | Gru                       | 2015 | Unrated  |\n" +
+                "-------------------------------------------------------------------------------\n\n"));
     }
 
     @After

@@ -16,7 +16,8 @@ public class PrintCheckOutHistoryAction implements MenuAction {
 
     @Override
     public void execute() {
-        ioModule.println(bookSection.displayCheckedOutItemDetails());
-        ioModule.println(movieSection.displayCheckedOutItemDetails());
+        ioModule.println("\n------------------------------------------------------------------------------------------------------------------");
+        ioModule.print(bookSection.displayCheckedOutItemDetails()+movieSection.displayCheckedOutItemDetails());
+        ioModule.print("------------------------------------------------------------------------------------------------------------------\n\n");
     }
 }

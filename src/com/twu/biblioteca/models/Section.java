@@ -21,10 +21,11 @@ public class Section {
     }
 
     public String displayAvailableItemsWithAllDetails() {
-        String resultItemsInStringFormat = "";
+        String resultItemsInStringFormat = "\n-------------------------------------------------------------------------------\n";
         for (LibraryItem libraryItem : availableItemsList) {
-            resultItemsInStringFormat += libraryItem.toString() + "\n";
+            resultItemsInStringFormat += "| " + libraryItem.toString() + "|\n";
         }
+        resultItemsInStringFormat += "-------------------------------------------------------------------------------\n";
         return resultItemsInStringFormat;
     }
 
