@@ -1,14 +1,17 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.controllers.MenuSelector;
 import com.twu.biblioteca.menuactions.LogOutAction;
 import com.twu.biblioteca.menuactions.LoginAction;
+import com.twu.biblioteca.users.User;
+import com.twu.biblioteca.views.IOModule;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
+import static com.twu.biblioteca.constants.BibliotecaAppConstants.WELCOME_MESSAGE;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -46,6 +49,13 @@ public class AppTest {
     @Test
     public void shouldBeAbleToPeformAnActionBasedOnUserInput() {
         bibliotecaApp.start();
+
+        verify(mockUser).acceptSelector(mockMenuSelector);
+    }
+
+    @Test
+    public void shouldBeAbleToUpdateUserInformationUponLoginAction() {
+        bibliotecaApp.update(mockUser);
 
         verify(mockUser).acceptSelector(mockMenuSelector);
     }

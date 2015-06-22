@@ -1,14 +1,14 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.Authenticator;
-import com.twu.biblioteca.IOModule;
-import com.twu.biblioteca.LoginListener;
-import com.twu.biblioteca.User;
+import com.twu.biblioteca.controllers.Authenticator;
+import com.twu.biblioteca.controllers.LoginListener;
+import com.twu.biblioteca.users.User;
+import com.twu.biblioteca.views.IOModule;
 
 import java.util.List;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARY_NUMBER_PROMPT;
-import static com.twu.biblioteca.BibliotecaAppConstants.LIBRARY_PASSWORD_PROMPT;
+import static com.twu.biblioteca.constants.BibliotecaAppConstants.LIBRARY_NUMBER_PROMPT;
+import static com.twu.biblioteca.constants.BibliotecaAppConstants.LIBRARY_PASSWORD_PROMPT;
 
 public class LoginAction implements MenuAction {
     private Authenticator authenticator;
@@ -29,11 +29,7 @@ public class LoginAction implements MenuAction {
         String password = ioModule.readInput();
         User user = authenticator.authenticate(libraryNumber, password);
         ioModule.println(user.statusMessage());
-        updateAllListeners(loginListeners, user);
-    }
-
-    private void updateAllListeners(List<LoginListener> listeners, User user) {
-        for (LoginListener listener : listeners) {
+        for (LoginListener listener : loginListeners) {
             listener.update(user);
         }
     }

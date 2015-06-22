@@ -1,9 +1,9 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.Controller;
-import com.twu.biblioteca.LoginListener;
-import com.twu.biblioteca.Section;
-import com.twu.biblioteca.User;
+import com.twu.biblioteca.controllers.Controller;
+import com.twu.biblioteca.controllers.LoginListener;
+import com.twu.biblioteca.models.Section;
+import com.twu.biblioteca.users.User;
 
 public class ReturnMovieAction implements MenuAction, LoginListener {
 

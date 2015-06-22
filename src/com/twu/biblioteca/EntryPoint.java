@@ -1,13 +1,23 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.controllers.Authenticator;
+import com.twu.biblioteca.controllers.Controller;
+import com.twu.biblioteca.controllers.LoginListener;
+import com.twu.biblioteca.controllers.MenuSelector;
 import com.twu.biblioteca.menuactions.*;
+import com.twu.biblioteca.models.*;
+import com.twu.biblioteca.users.Guest;
+import com.twu.biblioteca.users.Librarian;
+import com.twu.biblioteca.users.Member;
+import com.twu.biblioteca.users.User;
+import com.twu.biblioteca.views.IOModule;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.*;
+import static com.twu.biblioteca.constants.BibliotecaAppConstants.*;
 
 // This class has all the Initialization of App
 public class EntryPoint {
@@ -42,6 +52,8 @@ public class EntryPoint {
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
         HashMap<User, List<LibraryItem>> checkedOutMoviesList = new HashMap<>();
+        checkedOutMoviesList.put(member, new ArrayList<LibraryItem>());
+        checkedOutMoviesList.put(librarian, new ArrayList<LibraryItem>());
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         List<LoginListener> listenerList = new ArrayList<>();
@@ -55,6 +67,7 @@ public class EntryPoint {
         ReturnBookAction returnBookAction = new ReturnBookAction(bookSection, controller, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE, loginAction);
         CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, loginAction);
         ReturnMovieAction returnMovieAction = new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE, loginAction);
+        PrintCheckOutHistoryAction printCheckOutHistoryAction = new PrintCheckOutHistoryAction(bookSection, movieSection, ioModule);
 
 
         HashMap<Integer, String> guestOptionList = new HashMap<>();
@@ -88,9 +101,10 @@ public class EntryPoint {
         librarianMenu.addOption(4, LIST_MOVIES_OPTION_DESCRIPTION, listMoviesAction);
         librarianMenu.addOption(5, CHECKOUT_MOVIE_OPTION_DESCRIPTION, checkOutMovieAction);
         librarianMenu.addOption(6, RETURN_MOVIE_OPTION_DESCRIPTION, returnMovieAction);
-        librarianMenu.addOption(7, PRINT_PROFILE_OPTION_DESCRIPTION, printProfileAction);
-        librarianMenu.addOption(8, LOGOUT_OPTION_DESCRIPTION, logOutAction);
-        librarianMenu.addOption(9, QUIT_OPTION_DESCRIPTION, quitAction);
+        librarianMenu.addOption(7, PRINT_CHECKOUT_HISTORY_OPTION_DESCRIPTION, printCheckOutHistoryAction);
+        librarianMenu.addOption(8, PRINT_PROFILE_OPTION_DESCRIPTION, printProfileAction);
+        librarianMenu.addOption(9, LOGOUT_OPTION_DESCRIPTION, logOutAction);
+        librarianMenu.addOption(10, QUIT_OPTION_DESCRIPTION, quitAction);
 
         MenuSelector menuSelector = new MenuSelector(guestMenu, memberMenu, librarianMenu);
 

@@ -1,6 +1,12 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.*;
+import com.twu.biblioteca.controllers.Controller;
+import com.twu.biblioteca.models.LibraryItem;
+import com.twu.biblioteca.models.Movie;
+import com.twu.biblioteca.models.Section;
+import com.twu.biblioteca.users.Member;
+import com.twu.biblioteca.users.User;
+import com.twu.biblioteca.views.IOModule;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +24,6 @@ import static org.junit.Assert.assertThat;
 
 public class ListMoviesActionTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private Section movieSection;
     private Controller controller;
 
@@ -38,7 +43,6 @@ public class ListMoviesActionTest {
         movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
         controller = new Controller(ioModule);
         System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
     }
 
     @Test
@@ -56,6 +60,5 @@ public class ListMoviesActionTest {
     @After
     public void cleanUp() {
         System.setOut(null);
-        System.setErr(null);
     }
 }

@@ -1,8 +1,8 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.IOModule;
-import com.twu.biblioteca.LoginListener;
-import com.twu.biblioteca.User;
+import com.twu.biblioteca.controllers.LoginListener;
+import com.twu.biblioteca.users.User;
+import com.twu.biblioteca.views.IOModule;
 
 public class PrintProfileAction implements MenuAction, LoginListener {
     private User user;

@@ -1,7 +1,7 @@
 package com.twu.biblioteca.menuactions;
 
-import com.twu.biblioteca.Controller;
-import com.twu.biblioteca.Section;
+import com.twu.biblioteca.controllers.Controller;
+import com.twu.biblioteca.models.Section;
 
 // This Class executes the List Books Action
 public class ListBooksAction implements MenuAction {

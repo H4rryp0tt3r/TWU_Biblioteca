@@ -7,19 +7,17 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.INVALID_SELECTION_MESSAGE;
+import static com.twu.biblioteca.constants.BibliotecaAppConstants.INVALID_SELECTION_MESSAGE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class InvalidActionTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
     }
 
     @Test
@@ -35,6 +33,5 @@ public class InvalidActionTest {
     @After
     public void cleanUpStreams() {
         System.setOut(null);
-        System.setErr(null);
     }
 }

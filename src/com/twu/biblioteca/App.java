@@ -1,9 +1,13 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.controllers.LoginListener;
+import com.twu.biblioteca.controllers.MenuSelector;
 import com.twu.biblioteca.menuactions.LogOutAction;
 import com.twu.biblioteca.menuactions.LoginAction;
+import com.twu.biblioteca.users.User;
+import com.twu.biblioteca.views.IOModule;
 
-import static com.twu.biblioteca.BibliotecaAppConstants.WELCOME_MESSAGE;
+import static com.twu.biblioteca.constants.BibliotecaAppConstants.WELCOME_MESSAGE;
 
 // This Class Uses IOModule to Take User Input And then It gets an appropriate action from Menu and then executes it
 public class App implements LoginListener {
