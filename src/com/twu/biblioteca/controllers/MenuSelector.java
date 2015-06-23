@@ -1,5 +1,7 @@
 package com.twu.biblioteca.controllers;
 
+import com.twu.biblioteca.menuactions.LogOutAction;
+import com.twu.biblioteca.menuactions.LoginAction;
 import com.twu.biblioteca.menuactions.MenuAction;
 import com.twu.biblioteca.menuactions.QuitAction;
 import com.twu.biblioteca.models.Menu;
@@ -25,7 +27,7 @@ public class MenuSelector implements Selector {
             actionToBePerformed = guestMenu.chooseOption();
             actionToBePerformed.execute();
         }
-        while (!isQuitAction(actionToBePerformed));
+        while (!isLoginAction(actionToBePerformed));
     }
 
     @Override
@@ -35,7 +37,7 @@ public class MenuSelector implements Selector {
             actionToBePerformed = memberMenu.chooseOption();
             actionToBePerformed.execute();
         }
-        while (!isQuitAction(actionToBePerformed));
+        while (!isLogOutAction(actionToBePerformed));
     }
 
     @Override
@@ -45,10 +47,14 @@ public class MenuSelector implements Selector {
             actionToBePerformed = librarianMenu.chooseOption();
             actionToBePerformed.execute();
         }
-        while (!isQuitAction(actionToBePerformed));
+        while (!isLogOutAction(actionToBePerformed));
     }
 
-    private boolean isQuitAction(MenuAction actionToBePerformed) {
-        return actionToBePerformed instanceof QuitAction;
+    private boolean isLogOutAction(MenuAction actionToBePerformed) {
+        return actionToBePerformed instanceof LogOutAction;
+    }
+
+    private boolean isLoginAction(MenuAction actionToBePerformed) {
+        return actionToBePerformed instanceof LoginAction;
     }
 }

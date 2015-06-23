@@ -1,5 +1,7 @@
 package com.twu.biblioteca.controllers;
 
+import com.twu.biblioteca.menuactions.LogOutAction;
+import com.twu.biblioteca.menuactions.LoginAction;
 import com.twu.biblioteca.menuactions.QuitAction;
 import com.twu.biblioteca.models.Menu;
 import com.twu.biblioteca.users.Guest;
@@ -36,7 +38,10 @@ public class MenuSelectorTest {
     Menu mockLibrarianMenu;
 
     @Mock
-    QuitAction mockMenuAction;
+    LoginAction mockLoginAction;
+
+    @Mock
+    LogOutAction mockLogoutAction;
 
     @Mock
     IOModule mockIOModule;
@@ -44,7 +49,7 @@ public class MenuSelectorTest {
     @Test
     public void shouldBeAbleToChooseGuestMenu() {
         MenuSelector menuSelector = new MenuSelector(mockGuestMenu, mockMemberMenu, mockLibrarianMenu);
-        when(mockGuestMenu.chooseOption()).thenReturn(mockMenuAction);
+        when(mockGuestMenu.chooseOption()).thenReturn(mockLoginAction);
         menuSelector.selectAppropriateMenu(mockGuest);
 
         verify(mockGuestMenu).chooseOption();
@@ -53,7 +58,7 @@ public class MenuSelectorTest {
     @Test
     public void shouldBeAbleToChooseMemberMenu() {
         MenuSelector menuSelector = new MenuSelector(mockGuestMenu, mockMemberMenu, mockLibrarianMenu);
-        when(mockMemberMenu.chooseOption()).thenReturn(mockMenuAction);
+        when(mockMemberMenu.chooseOption()).thenReturn(mockLogoutAction);
         menuSelector.selectAppropriateMenu(mockMember);
 
         verify(mockMemberMenu).chooseOption();
@@ -62,7 +67,7 @@ public class MenuSelectorTest {
     @Test
     public void shouldBeAbleToChooseLibrarianMenu() {
         MenuSelector menuSelector = new MenuSelector(mockGuestMenu, mockMemberMenu, mockLibrarianMenu);
-        when(mockLibrarianMenu.chooseOption()).thenReturn(mockMenuAction);
+        when(mockLibrarianMenu.chooseOption()).thenReturn(mockLogoutAction);
         menuSelector.selectAppropriateMenu(mockLibrarian);
 
         verify(mockLibrarianMenu).chooseOption();
