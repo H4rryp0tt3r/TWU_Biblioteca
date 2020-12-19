@@ -7,20 +7,17 @@ import com.twu.biblioteca.users.User;
 
 public class CheckOutBookAction implements MenuAction, LoginListener {
 
-    private Section bookSection;
-    private Controller controller;
-    private String successStatusMessage;
-    private String failedStatusMessage;
-    private LoginAction loginAction;
+    private final Section bookSection;
+    private final Controller controller;
+    private final String successStatusMessage;
+    private final String failedStatusMessage;
     private User user;
 
-    public CheckOutBookAction(Section bookSection, Controller controller, String successStatusMessage, String failedStatusMessage, LoginAction loginActionParam) {
+    public CheckOutBookAction(Section bookSection, Controller controller, String successStatusMessage, String failedStatusMessage) {
         this.bookSection = bookSection;
         this.controller = controller;
         this.successStatusMessage = successStatusMessage;
         this.failedStatusMessage = failedStatusMessage;
-        this.loginAction = loginActionParam;
-        loginAction.addListener(this);
     }
 
     @Override

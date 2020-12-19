@@ -24,12 +24,9 @@ public class ReturnBookActionTest {
     @Mock
     Section mockBookSection;
 
-    @Mock
-    LoginAction mockLogicAction;
-
     @Test
     public void shouldBeAbleToPerformCheckOutAction() {
-        ReturnBookAction returnBookAction = new ReturnBookAction(mockBookSection, mockController, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE, mockLogicAction);
+        ReturnBookAction returnBookAction = new ReturnBookAction(mockBookSection, mockController, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE);
         returnBookAction.update(mockUser);
         returnBookAction.execute();
 

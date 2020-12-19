@@ -2,12 +2,10 @@ package com.twu.biblioteca.controllers;
 
 import com.twu.biblioteca.menuactions.LogOutAction;
 import com.twu.biblioteca.menuactions.LoginAction;
-import com.twu.biblioteca.menuactions.QuitAction;
 import com.twu.biblioteca.models.Menu;
 import com.twu.biblioteca.users.Guest;
 import com.twu.biblioteca.users.Librarian;
 import com.twu.biblioteca.users.Member;
-import com.twu.biblioteca.views.IOModule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -42,9 +40,6 @@ public class MenuSelectorTest {
 
     @Mock
     LogOutAction mockLogoutAction;
-
-    @Mock
-    IOModule mockIOModule;
 
     @Test
     public void shouldBeAbleToChooseGuestMenu() {

@@ -10,9 +10,9 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.MENU_PROMPT;
 
 // This class will take care of Menu of our Application and it has methods to chooseOption from Menu & addOption to Menu.
 public class Menu {
-    private HashMap<Integer, String> optionList;
-    private HashMap<Integer, MenuAction> actionList;
-    private IOModule ioModule;
+    private final HashMap<Integer, String> optionList;
+    private final HashMap<Integer, MenuAction> actionList;
+    private final IOModule ioModule;
 
     public Menu(HashMap<Integer, String> optionList, HashMap<Integer, MenuAction> actionList, IOModule ioModule) {
         this.optionList = optionList;
@@ -22,11 +22,11 @@ public class Menu {
 
     @Override
     public String toString() {
-        String menuText = "";
+        StringBuilder menuText = new StringBuilder();
         for (Integer option : optionList.keySet())
             if (option != INVALID_OPTION)
-                menuText += option + ") " + optionList.get(option) + "\n";
-        return menuText;
+                menuText.append(option).append(") ").append(optionList.get(option)).append("\n");
+        return menuText.toString();
     }
 
     public MenuAction chooseOption() {

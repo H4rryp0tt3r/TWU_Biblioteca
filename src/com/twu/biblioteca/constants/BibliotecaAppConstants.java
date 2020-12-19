@@ -1,6 +1,6 @@
 package com.twu.biblioteca.constants;
 
-public interface BibliotecaAppConstants {
+public final class BibliotecaAppConstants {
     public static final String WELCOME_MESSAGE = "+--------------------------------------------------+\n" +
             "|              Welcome to Biblioteca               |\n" +
             "+--------------------------------------------------+\n";
@@ -39,4 +39,7 @@ public interface BibliotecaAppConstants {
     public static final String USER_BASIC_DETAILS_FORMAT_PATTERN = "| %s : %-15s |";
     public static final String HISTORY_PRINTING_PATTERN = "%s => | %s |";
     public static final String PRINT_CHECKOUT_HISTORY_OPTION_DESCRIPTION = "Print CheckOut Details";
+
+    private BibliotecaAppConstants() {
+    }
 }

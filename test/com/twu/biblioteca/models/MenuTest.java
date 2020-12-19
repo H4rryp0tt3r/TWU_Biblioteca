@@ -30,15 +30,13 @@ public class MenuTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     @Mock
     IOModule mockIOModule;
-    private HashMap<Integer, String> optionList = new HashMap<>();
-    private HashMap<Integer, MenuAction> actionList = new HashMap<>();
+    private final HashMap<Integer, String> optionList = new HashMap<>();
+    private final HashMap<Integer, MenuAction> actionList = new HashMap<>();
     private Menu menu;
-    private IOModule ioModule;
-    private Controller controller;
 
     @Before
     public void setUp() {
-        ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
+        IOModule ioModule = new IOModule(new Scanner(new BufferedInputStream(System.in)), new PrintStream(outContent));
 
         List<LibraryItem> availableBooksList = new ArrayList<>();
         User member = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
@@ -62,7 +60,7 @@ public class MenuTest {
         checkedOutMoviesList.put(member, movies);
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
-        controller = new Controller(ioModule);
+        Controller controller = new Controller(ioModule);
         menu = new Menu(optionList, actionList, mockIOModule);
         menu.addOption(-1, null, new InvalidAction());
         menu.addOption(1, LIST_BOOKS_OPTION_DESCRPTION, new ListBooksAction(bookSection, controller));

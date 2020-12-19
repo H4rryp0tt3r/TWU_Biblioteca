@@ -49,7 +49,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void shoudlBeAbleToReturnAnItemToCorrespondingSection() {
+    public void shouldBeAbleToReturnAnItemToCorrespondingSection() {
         when(mockIOModule.readInput()).thenReturn("H4rryp0tt3r");
         controller.returnAnItem(mockSection, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE, user);
 

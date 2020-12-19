@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class AuthenticatorTest {
 
     @Test
-    public void shouldBeAbleToReturnUserUponSuccessfullAuthentication() {
+    public void shouldBeAbleToReturnUserUponSuccessfulAuthentication() {
         User member = new Member("123-4567", "s3cr3t", "Nagesh", "nagesh@gmail.com", "1234567890");
         User librarian = new Librarian("111-1111", "password", "Librarian", "librarian@librarians.com", "9876543210");
         List<User> userDB = new ArrayList<>();

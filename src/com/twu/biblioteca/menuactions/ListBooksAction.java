@@ -6,8 +6,8 @@ import com.twu.biblioteca.models.Section;
 // This Class executes the List Books Action
 public class ListBooksAction implements MenuAction {
 
-    private Section bookSection;
-    private Controller controller;
+    private final Section bookSection;
+    private final Controller controller;
 
     public ListBooksAction(Section bookSection, Controller controller) {
         this.bookSection = bookSection;

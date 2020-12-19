@@ -7,20 +7,17 @@ import com.twu.biblioteca.users.User;
 
 public class ReturnMovieAction implements MenuAction, LoginListener {
 
-    private Section movieSection;
-    private Controller controller;
-    private String successStatusMessage;
-    private String failedStatusMessage;
-    private LoginAction loginAction;
+    private final Section movieSection;
+    private final Controller controller;
+    private final String successStatusMessage;
+    private final String failedStatusMessage;
     private User user;
 
-    public ReturnMovieAction(Section movieSection, Controller controller, String successStatusMessage, String failedStatusMessage, LoginAction loginActionParam) {
+    public ReturnMovieAction(Section movieSection, Controller controller, String successStatusMessage, String failedStatusMessage) {
         this.movieSection = movieSection;
         this.controller = controller;
         this.successStatusMessage = successStatusMessage;
         this.failedStatusMessage = failedStatusMessage;
-        this.loginAction = loginActionParam;
-        loginAction.addListener(this);
     }
 
     @Override

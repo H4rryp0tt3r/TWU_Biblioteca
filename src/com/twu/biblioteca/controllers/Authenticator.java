@@ -6,7 +6,7 @@ import com.twu.biblioteca.users.User;
 import java.util.List;
 
 public class Authenticator {
-    private List<User> userDB;
+    private final List<User> userDB;
 
     public Authenticator(List<User> userDB) {
         this.userDB = userDB;

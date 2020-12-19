@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.controllers.MenuSelector;
-import com.twu.biblioteca.menuactions.LogOutAction;
-import com.twu.biblioteca.menuactions.LoginAction;
 import com.twu.biblioteca.users.User;
 import com.twu.biblioteca.views.IOModule;
 import org.junit.Before;
@@ -26,17 +24,11 @@ public class AppTest {
     @Mock
     User mockUser;
 
-    @Mock
-    LoginAction mockLoginAction;
-
-    @Mock
-    LogOutAction mockLogOutAction;
-
     private App bibliotecaApp;
 
     @Before
     public void setUp() {
-        bibliotecaApp = new App(mockIOModule, mockMenuSelector, mockUser, mockLoginAction, mockLogOutAction);
+        bibliotecaApp = new App(mockIOModule, mockMenuSelector, mockUser);
     }
 
     @Test
@@ -47,7 +39,7 @@ public class AppTest {
     }
 
     @Test
-    public void shouldBeAbleToPeformAnActionBasedOnUserInput() {
+    public void shouldBeAbleToPerformAnActionBasedOnUserInput() {
         bibliotecaApp.start();
 
         verify(mockUser).acceptSelector(mockMenuSelector);

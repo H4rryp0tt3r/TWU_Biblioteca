@@ -4,7 +4,9 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.BOOK_DETAILS_F
 
 // This Class Store Book data and Has a formatter to Print itself
 public class Book implements LibraryItem {
-    private String name, author, yearOfPublictaion;
+    private final String name;
+    private final String author;
+    private final String yearOfPublictaion;
 
     public Book(String name, String author, String yearOfPublictaion) {
         this.name = name;

@@ -7,7 +7,7 @@ import com.twu.biblioteca.views.IOModule;
 import static com.twu.biblioteca.constants.BibliotecaAppConstants.LOGOUT_SUCCESS_MESSAGE;
 
 public class LogOutAction implements MenuAction {
-    private IOModule ioModule;
+    private final IOModule ioModule;
     private LoginListener loginListener;
 
     public LogOutAction(IOModule ioModule) {

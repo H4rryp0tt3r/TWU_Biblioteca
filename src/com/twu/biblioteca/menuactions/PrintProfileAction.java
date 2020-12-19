@@ -6,13 +6,10 @@ import com.twu.biblioteca.views.IOModule;
 
 public class PrintProfileAction implements MenuAction, LoginListener {
     private User user;
-    private LoginAction loginAction;
-    private IOModule ioModule;
+    private final IOModule ioModule;
 
-    public PrintProfileAction(IOModule ioModule, LoginAction loginActionParam) {
+    public PrintProfileAction(IOModule ioModule) {
         this.ioModule = ioModule;
-        this.loginAction = loginActionParam;
-        loginAction.addListener(this);
     }
 
     @Override

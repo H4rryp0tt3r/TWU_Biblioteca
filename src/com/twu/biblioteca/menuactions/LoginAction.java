@@ -11,9 +11,9 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.LIBRARY_NUMBER
 import static com.twu.biblioteca.constants.BibliotecaAppConstants.LIBRARY_PASSWORD_PROMPT;
 
 public class LoginAction implements MenuAction {
-    private Authenticator authenticator;
-    private IOModule ioModule;
-    private List<LoginListener> loginListeners;
+    private final Authenticator authenticator;
+    private final IOModule ioModule;
+    private final List<LoginListener> loginListeners;
 
     public LoginAction(Authenticator authenticator, IOModule ioModule, List<LoginListener> loginListeners) {
         this.authenticator = authenticator;

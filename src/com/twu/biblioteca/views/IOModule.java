@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 // This class takes care of IO operations like read from console & print to console
 public class IOModule {
-    private Scanner inputReader;
-    private PrintStream outputRenderer;
+    private final Scanner inputReader;
+    private final PrintStream outputRenderer;
 
     public IOModule(Scanner inputReader, PrintStream outputRenderer) {
         this.inputReader = inputReader;

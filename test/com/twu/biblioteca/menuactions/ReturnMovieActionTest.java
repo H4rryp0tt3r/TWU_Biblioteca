@@ -16,9 +16,6 @@ import static org.mockito.Mockito.verify;
 public class ReturnMovieActionTest {
 
     @Mock
-    LoginAction mockLoginAction;
-
-    @Mock
     Controller mockController;
 
     @Mock
@@ -30,7 +27,7 @@ public class ReturnMovieActionTest {
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() {
-        ReturnMovieAction returnMovieAction = new ReturnMovieAction(mockMovieSection, mockController, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE, mockLoginAction);
+        ReturnMovieAction returnMovieAction = new ReturnMovieAction(mockMovieSection, mockController, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE);
         returnMovieAction.update(mockUser);
         returnMovieAction.execute();
 

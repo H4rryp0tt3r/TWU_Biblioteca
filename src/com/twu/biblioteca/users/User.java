@@ -6,11 +6,11 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.USER_BASIC_DET
 import static com.twu.biblioteca.constants.BibliotecaAppConstants.USER_DETAILS_FORMAT_PATTERN;
 
 public abstract class User {
-    private String libraryNumber;
-    private String password;
-    private String name;
-    private String emailAddress;
-    private String phoneNumber;
+    private final String libraryNumber;
+    private final String password;
+    private final String name;
+    private final String emailAddress;
+    private final String phoneNumber;
 
     public User(String libraryNumber, String password, String name, String emailAddress, String phoneNumber) {
         this.libraryNumber = libraryNumber;

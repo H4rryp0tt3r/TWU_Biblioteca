@@ -19,12 +19,9 @@ public class PrintProfileActionTest {
     @Mock
     User mockUser;
 
-    @Mock
-    LoginAction mockLoginAction;
-
     @Test
-    public void shoudlBeAbleToPrintUserProfile() {
-        PrintProfileAction printProfileAction = new PrintProfileAction(mockIOModule, mockLoginAction);
+    public void shouldBeAbleToPrintUserProfile() {
+        PrintProfileAction printProfileAction = new PrintProfileAction(mockIOModule);
         when(mockUser.toString()).thenReturn("User details");
         printProfileAction.update(mockUser);
         printProfileAction.execute();

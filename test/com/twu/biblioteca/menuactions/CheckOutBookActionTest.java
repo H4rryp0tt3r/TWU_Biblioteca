@@ -8,17 +8,12 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.IOException;
-
 import static com.twu.biblioteca.constants.BibliotecaAppConstants.FAILED_BOOK_CHECKOUT_MESSAGE;
 import static com.twu.biblioteca.constants.BibliotecaAppConstants.SUCCESSFUL_BOOK_CHECKOUT_MESSAGE;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CheckOutBookActionTest {
-
-    @Mock
-    LoginAction mockLoginAction;
 
     @Mock
     Controller mockController;
@@ -31,8 +26,8 @@ public class CheckOutBookActionTest {
 
 
     @Test
-    public void shouldBeAbleToPerformCheckOutAction() throws IOException {
-        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(mockBookSection, mockController, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE, mockLoginAction);
+    public void shouldBeAbleToPerformCheckOutAction() {
+        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(mockBookSection, mockController, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE);
         checkOutBookAction.update(mockUser);
         checkOutBookAction.execute();
 

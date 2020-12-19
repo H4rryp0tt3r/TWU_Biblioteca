@@ -23,7 +23,7 @@ public class LogOutActionTest {
     LoginListener mockLoginListener;
 
     @Test
-    public void shoudlBeAbleToPerformLogOutAction() {
+    public void shouldBeAbleToPerformLogOutAction() {
         LogOutAction logOutAction = new LogOutAction(mockIOModule);
         logOutAction.addListener(mockLoginListener);
         mockIOModule.println("SUCCESS");

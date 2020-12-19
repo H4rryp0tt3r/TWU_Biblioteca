@@ -4,8 +4,10 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.MOVIE_DETAILS_
 
 // This Class Store Movie data and Has a formatter to Print itself
 public class Movie implements LibraryItem {
-    private String name, director, year;
-    private String rating;
+    private final String name;
+    private final String director;
+    private final String year;
+    private final String rating;
 
     public Movie(String name, String director, String year, String rating) {
         this.name = name;

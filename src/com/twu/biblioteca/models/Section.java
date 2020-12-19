@@ -10,9 +10,9 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.HISTORY_PRINTI
 // This class will holds list of books & a checkout Record. And has methods to Checkout & Return a Book.
 public class Section {
 
-    private List<LibraryItem> availableItemsList;
-    private HashMap<User, List<LibraryItem>> checkedOutItemsList;
-    private List<LibraryItem> searchResultsList;
+    private final List<LibraryItem> availableItemsList;
+    private final HashMap<User, List<LibraryItem>> checkedOutItemsList;
+    private final List<LibraryItem> searchResultsList;
 
     public Section(List<LibraryItem> availableItemsList, HashMap<User, List<LibraryItem>> checkedOutItemsList, List<LibraryItem> searchResultsList) {
         this.availableItemsList = availableItemsList;
@@ -21,21 +21,20 @@ public class Section {
     }
 
     public String displayAvailableItemsWithAllDetails() {
-        String resultItemsInStringFormat = "\n-------------------------------------------------------------------------------\n";
+        StringBuilder resultItemsInStringFormat = new StringBuilder("\n-------------------------------------------------------------------------------\n");
         for (LibraryItem libraryItem : availableItemsList) {
-            resultItemsInStringFormat += "| " + libraryItem.toString() + "|\n";
+            resultItemsInStringFormat.append("| ").append(libraryItem.toString()).append("|\n");
         }
-        resultItemsInStringFormat += "-------------------------------------------------------------------------------\n";
-        return resultItemsInStringFormat;
+        resultItemsInStringFormat.append("-------------------------------------------------------------------------------\n");
+        return resultItemsInStringFormat.toString();
     }
 
-    public List<LibraryItem> searchItemsByName(String itemName, List<LibraryItem> itemsList) {
+    public void searchItemsByName(String itemName, List<LibraryItem> itemsList) {
         searchResultsList.clear();
         for (LibraryItem libraryItem : itemsList) {
             if (libraryItem.match(itemName))
                 searchResultsList.add(libraryItem);
         }
-        return searchResultsList;
     }
 
     public boolean checkOut(String itemName, User user) {
@@ -78,12 +77,12 @@ public class Section {
     }
 
     public String displayCheckedOutItemDetails() {
-        String itemDetails = "";
+        StringBuilder itemDetails = new StringBuilder();
         for (User user : checkedOutItemsList.keySet()) {
             for (LibraryItem libraryItem : checkedOutItemsList.get(user)) {
-                itemDetails += String.format(HISTORY_PRINTING_PATTERN, user.getUserBasicDetails(), libraryItem.toString()) + "\n";
+                itemDetails.append(String.format(HISTORY_PRINTING_PATTERN, user.getUserBasicDetails(), libraryItem.toString())).append("\n");
             }
         }
-        return itemDetails;
+        return itemDetails.toString();
     }
 }

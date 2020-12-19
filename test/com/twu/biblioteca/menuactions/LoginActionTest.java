@@ -26,9 +26,6 @@ public class LoginActionTest {
     User mockUser;
 
     @Mock
-    LoginAction mockLoginAction;
-
-    @Mock
     Authenticator mockAuthenticator;
 
     @Mock
@@ -40,12 +37,12 @@ public class LoginActionTest {
     private List<LoginListener> loginListeners;
 
     @Before
-    public void setUp() throws Exception {
-        loginListeners = new ArrayList();
+    public void setUp() {
+        loginListeners = new ArrayList<>();
     }
 
     @Test
-    public void shoudlBeAbleToAddListeners() {
+    public void shouldBeAbleToAddListeners() {
         LoginAction loginAction = new LoginAction(mockAuthenticator, mockIOModule, mockLoginListeners);
         loginAction.addListener(mockLoginListener);
 

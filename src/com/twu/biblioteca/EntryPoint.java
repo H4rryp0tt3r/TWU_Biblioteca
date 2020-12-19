@@ -21,7 +21,7 @@ import static com.twu.biblioteca.constants.BibliotecaAppConstants.*;
 
 // This class has all the Initialization of App
 public class EntryPoint {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Scanner inputReader = new Scanner(System.in);
         IOModule ioModule = new IOModule(inputReader, System.out);
 
@@ -42,8 +42,8 @@ public class EntryPoint {
         availableBooksList.add(new Book("Sample Book2", "Naresh", "2010"));
         availableBooksList.add(new Book("Sample Book3", "Ganesh", "2011"));
         HashMap<User, List<LibraryItem>> checkedOutBooksList = new HashMap<>();
-        checkedOutBooksList.put(member, new ArrayList<LibraryItem>());
-        checkedOutBooksList.put(librarian, new ArrayList<LibraryItem>());
+        checkedOutBooksList.put(member, new ArrayList<>());
+        checkedOutBooksList.put(librarian, new ArrayList<>());
         List<LibraryItem> searchResultsList = new ArrayList<>();
         Section bookSection = new Section(availableBooksList, checkedOutBooksList, searchResultsList);
 
@@ -52,21 +52,26 @@ public class EntryPoint {
         availableMoviesList.add(new Movie("Interstellar", "Nolan", "2015", "8.9"));
         availableMoviesList.add(new Movie("Super Man", "Morgan", "1994", "Unrated"));
         HashMap<User, List<LibraryItem>> checkedOutMoviesList = new HashMap<>();
-        checkedOutMoviesList.put(member, new ArrayList<LibraryItem>());
-        checkedOutMoviesList.put(librarian, new ArrayList<LibraryItem>());
+        checkedOutMoviesList.put(member, new ArrayList<>());
+        checkedOutMoviesList.put(librarian, new ArrayList<>());
         Section movieSection = new Section(availableMoviesList, checkedOutMoviesList, searchResultsList);
 
         List<LoginListener> listenerList = new ArrayList<>();
         LoginAction loginAction = new LoginAction(authenticator, ioModule, listenerList);
         LogOutAction logOutAction = new LogOutAction(ioModule);
-        PrintProfileAction printProfileAction = new PrintProfileAction(ioModule, loginAction);
+        PrintProfileAction printProfileAction = new PrintProfileAction(ioModule);
+        loginAction.addListener(printProfileAction);
         ListBooksAction listBooksAction = new ListBooksAction(bookSection, controller);
         ListMoviesAction listMoviesAction = new ListMoviesAction(movieSection, controller);
         QuitAction quitAction = new QuitAction();
-        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE, loginAction);
-        ReturnBookAction returnBookAction = new ReturnBookAction(bookSection, controller, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE, loginAction);
-        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, loginAction);
-        ReturnMovieAction returnMovieAction = new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE, loginAction);
+        CheckOutBookAction checkOutBookAction = new CheckOutBookAction(bookSection, controller, SUCCESSFUL_BOOK_CHECKOUT_MESSAGE, FAILED_BOOK_CHECKOUT_MESSAGE);
+        loginAction.addListener(checkOutBookAction);
+        ReturnBookAction returnBookAction = new ReturnBookAction(bookSection, controller, SUCCESSFUL_BOOK_RETURN_MESSAGE, FAILED_BOOK_RETURN_MESSAGE);
+        loginAction.addListener(returnBookAction);
+        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE);
+        loginAction.addListener(checkOutMovieAction);
+        ReturnMovieAction returnMovieAction = new ReturnMovieAction(movieSection, controller, SUCCESSFUL_MOVIE_RETURN_MESSAGE, FAILED_MOVIE_RETURN_MESSAGE);
+        loginAction.addListener(returnMovieAction);
         PrintCheckOutHistoryAction printCheckOutHistoryAction = new PrintCheckOutHistoryAction(bookSection, movieSection, ioModule);
 
 
@@ -109,7 +114,9 @@ public class EntryPoint {
         MenuSelector menuSelector = new MenuSelector(guestMenu, memberMenu, librarianMenu);
 
 
-        App bibliotecaApp = new App(ioModule, menuSelector, guest, loginAction, logOutAction);
+        App bibliotecaApp = new App(ioModule, menuSelector, guest);
+        loginAction.addListener(bibliotecaApp);
+        logOutAction.addListener(bibliotecaApp);
         bibliotecaApp.start();
     }
 }

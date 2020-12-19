@@ -52,7 +52,7 @@ public class GuestTest {
     }
 
     @Test
-    public void shoudlBeAbleToCreateANewGuest() {
+    public void shouldBeAbleToCreateANewGuest() {
         Guest actualCreatedGuest = Guest.create();
 
         assertThat(actualCreatedGuest, is(new Guest()));

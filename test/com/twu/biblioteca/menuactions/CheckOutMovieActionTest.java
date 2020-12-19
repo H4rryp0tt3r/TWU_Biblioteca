@@ -24,13 +24,10 @@ public class CheckOutMovieActionTest {
     @Mock
     Controller mockController;
 
-    @Mock
-    LoginAction mockLoginAction;
-
 
     @Test
     public void shouldBeAbleToPerformCheckOutAction() {
-        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, mockController, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE, mockLoginAction);
+        CheckOutMovieAction checkOutMovieAction = new CheckOutMovieAction(movieSection, mockController, SUCCESSFUL_MOVIE_CHECKOUT_MESSAGE, FAILED_MOVIE_CHECKOUT_MESSAGE);
         checkOutMovieAction.update(mockUser);
         checkOutMovieAction.execute();
 

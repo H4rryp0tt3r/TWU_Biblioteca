@@ -7,7 +7,7 @@ import com.twu.biblioteca.views.IOModule;
 import static com.twu.biblioteca.constants.BibliotecaAppConstants.NAME_PROMPT_MESSAGE;
 
 public class Controller {
-    private IOModule ioModule;
+    private final IOModule ioModule;
 
     public Controller(IOModule ioModule) {
         this.ioModule = ioModule;
